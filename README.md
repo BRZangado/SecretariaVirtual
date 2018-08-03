@@ -27,7 +27,9 @@ O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer,
 	* Bibliotecário
 	* Direção Acadêmica
 
-## Backlog do produto (Em formato US)
+## Backlog do produto
+
+### Requisitos Funcionais (Em formato US)
 
 * Eu como aluno, quero poder criar uma solicitação acadêmica de múltiplos fatores em ambiente virtual
 * Eu como aluno, quero poder acompanhar o status da minha solicitação.
@@ -38,6 +40,11 @@ O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer,
 * Eu como Gerente Financeiro, preciso preencher um parecer sobre a solicitação acadêmica do aluno
 * Eu como Bibliotecário, preciso preencher um parecer sobre a solicitação acadêmica do aluno
 * Eu como Direção Acadêmica, preciso preencher um parecer sobre a solicitação acadêmica do aluno
+
+### Requisitos não Funcionais
+
+* O software deve ser responsivo, para se adaptar a diferentes tipos de tela
+* O software deve ter um sistema de autenticação seguro
 
 
 ## Arquitetura (v0.1)

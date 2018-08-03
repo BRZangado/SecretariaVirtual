@@ -1,102 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Usuario(models.Model):
-
-	user = models.OneToOneField(
-		User,
-		on_delete=models.CASCADE
-	)
-
-	name = models.CharField(
-		('Nome'),
-		help_text=("Nome completo do usuário"),
-		max_length=150
-	)
-
-	is_staff = models.BooleanField(
-		('Is Staff?'),
-		help_text=("Verify if the user is a staff."),
-		default=False
-	)
-
-	is_student = models.BooleanField(
-		('Is Student?'),
-    	help_text=("Verificar se o usuário é um aluno"),
-    	default=False
-    )
-
-	is_secretary = models.BooleanField(
-		('Is Secretary?'),
-		help_text=("Verificar se o usuário é um Secretaria Acadêmica"),
-		default=False
-	)
-
-	is_library = models.BooleanField(
-		('Is Librarian?'),
-		help_text=("Verificar se o usuário é um Bibliotecário"),
-		default=False
-	)
-
-	is_finance = models.BooleanField(
-		('Is Finance?'),
-		help_text=("Verificar se o usuário é do Financeiro"),
-		default=False
-	)
-
-	is_coordination = models.BooleanField(
-		('Is Coordination'),
-		help_text=("Verificar se o usuário é da Coordenação"),
-		default=False
-	)
-
-	is_napes = models.BooleanField(
-		('Is NAPES?'),
-		help_text=("Verificar se o usuário é NAPES"),
-		default=False
-	)
-
-	is_director = models.BooleanField(
-		('Is Director?'),
-		help_text=("Verificar se o usuário é Diretor Acadêmico"),
-		default=False
-	)
-
-	created_at = models.DateTimeField(
-		('Created at'),
-    	help_text=("Date that the user is created."),
-    	auto_now_add=True
-    )
-
-	updated_at = models.DateTimeField(
-		('Updated at'),
-		help_text=("Date that the user is updated."),
-		auto_now=True
-	)
-
-	def __str__(self):
-	    """
-	    Returns the object as a string, the attribute that will represent
-	    the object.
-	    """
-
-	    return self.name
-
-	def get_full_name(self):
-	    """
-	    Used to get the user full name.
-	    """
-	    return self.name
-
-	class Meta:
-	    """
-	    Some information about user class.
-	    """
-	    verbose_name = ("Usuário")
-	    verbose_name_plural = ("Usuários")
-	    ordering = ('created_at',)
-
-
 class Feedback(models.Model):
 
 	feedbacker = models.ForeignKey(
@@ -202,4 +106,104 @@ class Solicitation(models.Model):
 	    """
 	    verbose_name = ("Requerimento")
 	    verbose_name_plural = ("Requerimentos")
+	    ordering = ('created_at',)
+
+
+class Usuario(models.Model):
+
+	user = models.OneToOneField(
+		User,
+		on_delete=models.CASCADE
+	)
+
+	name = models.CharField(
+		('Nome'),
+		help_text=("Nome completo do usuário"),
+		max_length=150
+	)
+
+	is_staff = models.BooleanField(
+		('Is Staff?'),
+		help_text=("Verify if the user is a staff."),
+		default=False
+	)
+
+	is_student = models.BooleanField(
+		('Is Student?'),
+    	help_text=("Verificar se o usuário é um aluno"),
+    	default=False
+    )
+
+	is_secretary = models.BooleanField(
+		('Is Secretary?'),
+		help_text=("Verificar se o usuário é um Secretaria Acadêmica"),
+		default=False
+	)
+
+	is_library = models.BooleanField(
+		('Is Librarian?'),
+		help_text=("Verificar se o usuário é um Bibliotecário"),
+		default=False
+	)
+
+	is_finance = models.BooleanField(
+		('Is Finance?'),
+		help_text=("Verificar se o usuário é do Financeiro"),
+		default=False
+	)
+
+	is_coordination = models.BooleanField(
+		('Is Coordination'),
+		help_text=("Verificar se o usuário é da Coordenação"),
+		default=False
+	)
+
+	is_napes = models.BooleanField(
+		('Is NAPES?'),
+		help_text=("Verificar se o usuário é NAPES"),
+		default=False
+	)
+
+	is_director = models.BooleanField(
+		('Is Director?'),
+		help_text=("Verificar se o usuário é Diretor Acadêmico"),
+		default=False
+	)
+
+	created_at = models.DateTimeField(
+		('Created at'),
+    	help_text=("Date that the user is created."),
+    	auto_now_add=True
+    )
+
+	updated_at = models.DateTimeField(
+		('Updated at'),
+		help_text=("Date that the user is updated."),
+		auto_now=True
+	)
+
+	solicitations = models.ManyToManyField(
+		Solicitation
+	)
+
+	def __str__(self):
+	    """
+	    Returns the object as a string, the attribute that will represent
+	    the object.
+	    """
+
+	    return self.name
+
+	def get_full_name(self):
+	    """
+	    Used to get the user full name.
+	    """
+	    return self.name
+
+	class Meta:
+	    """
+	    Some information about user class.
+	    """
+	    verbose_name = ("Usuário")
+	    verbose_name_plural = ("Usuários")
 	    ordering = ('created_at',)

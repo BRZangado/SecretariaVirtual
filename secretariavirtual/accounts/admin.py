@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from .models import Usuario, Solicitation, Feedback
 
-# Define an inline admin descriptor for Employee model
+# Define an inline admin descriptor for Usuario model
 # which acts a bit like a singleton
 class UsuarioInline(admin.StackedInline):
     model = Usuario

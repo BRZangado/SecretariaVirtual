@@ -5,9 +5,18 @@ Sistema baseado em Django de tranferência de arquivos e solicitações entre v�
 
 # Documento de visão do software
 
+## Escopo
+
+* O objetivo desse projeto é suprir a demanda de requisições e solicitações acadêmicas de forma totalmente virtual,
+poupando o aluno de se locomover presencialmente e aumentando a mobilidade e rapidez das tranferências de arquivos entre os funcionários da Faculdade.
+
+## Ambiente do Usuário
+O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer, Firefox, Opera e Edge.
+
 ## Papéis
 
-* Product Owner: Faculdade Anasps
+* Product Owner Externo: Faculdade Anasps
+* Product Owner Inter: Secretaria Acadêmica
 * Scrum Master e Engenheiro de Software: Bruno Rodrigues Santos
 * Principais Usuários:
 	

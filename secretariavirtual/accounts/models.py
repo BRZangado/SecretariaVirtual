@@ -59,9 +59,16 @@ class Solicitation(models.Model):
     )
 
 	student_semester = models.CharField(
-		('Período/Turma'),
-		help_text=("Período/Turma do Estudante"),
+		('Período'),
+		help_text=("Período do Estudante"),
 		max_length=15
+	)
+
+	classs = models.CharField(
+		('Turma'),
+		help_text=("Turma do Estudante"),
+		max_length=20,
+		default=('turma não informada')
 	)
 
 	student_academic_situation = models.CharField(

@@ -15,7 +15,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    FAnasps - Secretaria Virtual - Home do Aluno
+                    FAnasps - Secretaria Virtual - Home do Aluno | Aluno: {{user.usuario.name}}
                 </a>
             </div>
             <!-- /.navbar-header -->
@@ -52,7 +52,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <form role="form" method="post">
+                                <form role="form" method="post">{% csrf_token %}
                                     <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>{% render_field form.email.label %}</label>

@@ -52,130 +52,58 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label>E-mail:</label>
-                                            <input class="form-control" placeholder="digite seu email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Matrícula:</label>
-                                            <input class="form-control" placeholder="digite sua matrícula">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Telefone 1:</label>
-                                            <input class="form-control" placeholder="Digite seu telefone principal">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Telefone 2:</label>
-                                            <input class="form-control" placeholder="digite um telefone opcional">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Solicitação:</label>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Aluno Especial
-                                                </label>
+                                <form role="form" method="post">
+                                    <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>{% render_field form.email.label %}</label>
+                                                {% render_field form.email class="form-control" type="text" placeholder=form.email.help_text %}
                                             </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Aproveitamento de Estudos (anexar documentação)
-                                                </label>
+                                            <div class="form-group">
+                                                <label>{% render_field form.code.label %}</label>
+                                                {% render_field form.code class="form-control" type="text" placeholder=form.code.help_text %}
                                             </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Cancelamento Matrícula***
-                                                </label>
+                                            <div class="form-group">
+                                                <label>{% render_field form.phone_one.label %}</label>
+                                                {% render_field form.phone_one class="form-control" type="text" placeholder=form.phone_one.help_text %}
                                             </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Colação de Grau Coletiva**
-                                                </label>
+                                            <div class="form-group">
+                                                <label>{% render_field form.phone_two.label %}</label>
+                                                {% render_field form.phone_two class="form-control" type="text" placeholder=form.phone_two.help_text %}
                                             </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Colação de Grau Especial **
-                                                </label>
+                                            <div class="form-group">
+                                                <label>Solicitação:</label>
+                                                {% for radio in form.solicitations %}
+                                                    <div class="radio">
+                                                        <label>
+                                                            {{ radio.tag }}{{ radio.choice_label }}
+                                                        </label>
+                                                    </div>
+                                                {% endfor %}
                                             </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Declaração de Escolaridade (Escrever na justificativa se é 1ª via ou 2ª via)
-                                                </label>
+                                            <div class="form-group">
+                                                <label>{% render_field form.justification.label %}</label>
+                                                {% render_field form.justification class="form-control" placeholder=form.justification.help_text %}
                                             </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Declaração de Conclusão de Curso (Escrever na justificativa se é 1ª via ou 2ª via)
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Histórico Escolar*
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Mudança de Turno ou Turma
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Programas das disciplinas cursadas* (Descrever motivo na justificativa)
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Reabertura de Matrícula/Reingresso
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Revisão de Frequencia
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Revisão de Notas
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Trancamento de Matrícula***
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Solicitção de 2ª chamada de prova*
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Outro (descrever na justificativa)
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Justificatica</label>
-                                            <textarea class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-default">Enviar Solicitação</button>
-                                        <button type="reset" class="btn btn-default">Resetar</button>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Curso:</label>
-                                        <input class="form-control" placeholder="Seu curso">
+                                            <button type="submit" class="btn btn-default">Enviar Solicitação</button>
+                                            <button type="reset" class="btn btn-default">Resetar</button>
+                                        
                                     </div>
-                                    <div class="form-group">
-                                        <label>Período:</label>
-                                        <input class="form-control" placeholder="Período do Curso">
+                                    <!-- /.col-lg-6 (nested) -->
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>{% render_field form.course.label %}</label>
+                                            {% render_field form.course class="form-control" type="text" placeholder=form.course.help_text %}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{% render_field form.semester.label %}</label>
+                                            {% render_field form.semester class="form-control" type="text" placeholder=form.semester.help_text %}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{% render_field form.classs.label %}</label>
+                                            {% render_field form.classs class="form-control" type="text" placeholder=form.classs.help_text %}
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Turma:</label>
-                                        <input class="form-control" placeholder="Sua turma">
-                                    </div>
-                                </div>
+                                </form>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->

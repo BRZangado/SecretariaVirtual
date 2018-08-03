@@ -1,5 +1,4 @@
 # Django imports
-from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.http.response import HttpResponseRedirect

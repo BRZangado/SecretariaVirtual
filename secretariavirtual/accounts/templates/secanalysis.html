@@ -99,7 +99,7 @@
                                 <div class="panel-body">
                                     Parecer da Coordenação: <br>
                                     {{feedback}}
-                                </div>
+                                </div>4
                             {% endif %}
                         {% endfor %}
                         <!-- /.panel-body -->
@@ -116,11 +116,11 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaobib' sol_id=solicitation.pk %}">Enviar para Biblioteca</a><br><br>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaofin' sol_id=solicitation.pk %}">Enviar para Financeiro</a><br><br>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaonapes' sol_id=solicitation.pk %}">Enviar para NAPES</a><br><br>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaodirect' sol_id=solicitation.pk %}">Enviar para Direção</a><br><br>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaocoord' sol_id=solicitation.pk %}">Enviar para Coordenação</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=2 %}">Enviar para Biblioteca</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=7 %}">Enviar para Financeiro</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=6 %}">Enviar para NAPES</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=4 %}">Enviar para Direção</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=5 %}">Enviar para Coordenação</a><br><br>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->

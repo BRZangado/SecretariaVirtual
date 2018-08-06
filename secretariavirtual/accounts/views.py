@@ -99,54 +99,9 @@ class AnalysisSecretaryView(FormView, LoginRequiredMixin):
 		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
 		return solicitation
 
+def send_solitation_to(request, sol_id, status_to):
 
-def send_solitation_to_bib(request, sol_id):
-
-	solicitation_status = status[2]
-
-	solicitation = Solicitation.objects.get(pk=sol_id)
-	solicitation.status = solicitation_status
-
-	solicitation.save()
-
-	return HttpResponseRedirect(reverse('accounts:homesecretaria'))
-
-def send_solitation_to_napes(request, sol_id):
-
-	solicitation_status = status[6]
-
-	solicitation = Solicitation.objects.get(pk=sol_id)
-	solicitation.status = solicitation_status
-
-	solicitation.save()
-
-	return HttpResponseRedirect(reverse('accounts:homesecretaria'))
-
-def send_solitation_to_finance(request, sol_id):
-
-	solicitation_status = status[7]
-
-	solicitation = Solicitation.objects.get(pk=sol_id)
-	solicitation.status = solicitation_status
-
-	solicitation.save()
-
-	return HttpResponseRedirect(reverse('accounts:homesecretaria'))
-
-def send_solitation_to_direct(request, sol_id):
-
-	solicitation_status = status[4]
-
-	solicitation = Solicitation.objects.get(pk=sol_id)
-	solicitation.status = solicitation_status
-
-	solicitation.save()
-
-	return HttpResponseRedirect(reverse('accounts:homesecretaria'))
-
-def send_solitation_to_coord(request, sol_id):
-
-	solicitation_status = status[5]
+	solicitation_status = status[status_to]
 
 	solicitation = Solicitation.objects.get(pk=sol_id)
 	solicitation.status = solicitation_status

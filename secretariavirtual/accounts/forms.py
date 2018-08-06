@@ -67,3 +67,18 @@ class StudentSolicitationForm(forms.Form):
         label=("Justificativa"),
         help_text=("Digite a justificativa da solicitação"),
     )
+
+class SecretarySolicitationForm(forms.Form):
+
+    student_academic_situation = forms.CharField(
+        label=("Situação Acadêmica"),
+        help_text=("Situação Acadêmica do Estudante"),
+        max_length=50,
+    )
+
+    feedback = forms.CharField(
+        label=("Parecer"),
+        help_text=("Parecer da Secretaria"),
+        max_length=500,
+        widget=forms.Textarea,
+    )

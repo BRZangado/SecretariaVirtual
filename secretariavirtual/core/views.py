@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -35,10 +35,10 @@ class LoginView(FormView):
         if user is not None:
             login(self.request, user)
             if user.usuario.is_student:
-                return HttpResponseRedirect('/accounts/home/aluno/')
+                return HttpResponseRedirect(reverse('accounts:homealuno'))
             if user.usuario.is_secretary:
-                return HttpResponseRedirect('/accounts/home/secretaria/')
+                return HttpResponseRedirect(reverse('accounts:homesecretaria'))
         else:
-            return HttpResponseRedirect('/accounts/invalid')
+            return HttpResponseRedirect(reverse('accounts:invalid'))
 
 

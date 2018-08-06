@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    FAnasps - Secretaria Virtual
+                </a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Informações do Requerimento Nº {{solicitation.order}}
+                        </div>
+                        <!-- .panel-heading -->
+                        <div class="panel-body">
+                           Aluno: {{solicitation.student.usuario.name}}
+                           <br>
+                           Período: {{solicitation.student_semester}}
+                           <br>
+                           Turma: {{solicitation.classs}}
+                           <br>
+                           Solicitação: {{solicitation.solicitation}}
+                           <br>
+                           Justificativa: {{solicitation.reason}}
+                           
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        {% for feedback in solicitation.feedbacks.all %}
+                            {% if feedback.feedbacker.usuario.is_secretary %}
+                                <div class="panel-body">
+                                    <b>Parecer da Biblioteca:</b> <br>
+                                    {{feedback}}
+                                </div>
+                            {% endif %}
+                            {% if feedback.feedbacker.usuario.is_library %}
+                                <div class="panel-body">
+                                    Parecer da Biblioteca: <br>
+                                    {{feedback}}
+                                </div>
+                            {% endif %}
+                            {% if feedback.feedbacker.usuario.is_finance %}
+                                <div class="panel-body">
+                                    Parecer do Financeiro: <br>
+                                    {{feedback}}
+                                </div>
+                            {% endif %}
+                            {% if feedback.feedbacker.usuario.is_napes %}
+                                <div class="panel-body">
+                                    Parecer do NAPES: <br>
+                                    {{feedback}}
+                                </div>
+                            {% endif %}
+                            {% if feedback.feedbacker.usuario.is_director %}
+                                <div class="panel-body">
+                                    Parecer da Direção: <br>
+                                    {{feedback}}
+                                </div>
+                            {% endif %}
+                            {% if feedback.feedbacker.usuario.is_coordination %}
+                                <div class="panel-body">
+                                    Parecer da Coordenação: <br>
+                                    {{feedback}}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- /.panel-body -->
+                        <button type="button" class="btn btn-success">Encerrar Requerimento</button>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+                
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaobib' sol_id=solicitation.pk %}">Enviar para Biblioteca</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaofin' sol_id=solicitation.pk %}">Enviar para Financeiro</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaonapes' sol_id=solicitation.pk %}">Enviar para NAPES</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaodirect' sol_id=solicitation.pk %}">Enviar para Direção</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacaocoord' sol_id=solicitation.pk %}">Enviar para Coordenação</a><br><br>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <form role="form" method="post">{% csrf_token %}
+                                    <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>{% render_field form.student_academic_situation.label %}</label>
+                                                {% render_field form.student_academic_situation class="form-control" type="text" placeholder=form.student_academic_situation.help_text %}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{% render_field form.feedback.label %}</label>
+                                                {% render_field form.feedback class="form-control" placeholder=form.feedback.help_text %}
+                                            </div>
+                                            <button type="submit" class="btn btn-default">Enviar</button>
+                                            <button type="reset" class="btn btn-default">Resetar</button>
+                                    </div>
+                                </form>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+        </div>
+
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+{% endblock %}

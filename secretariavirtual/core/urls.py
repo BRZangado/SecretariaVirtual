@@ -6,5 +6,5 @@ app_name = 'core'
 
 urlpatterns = [
 	path('', LoginView.as_view(), name='index'),
-	path('accounts/', include('secretariavirtual.accounts.urls')),
+	path('accounts/', include('secretariavirtual.accounts.urls'), name="accounts"),
 ]

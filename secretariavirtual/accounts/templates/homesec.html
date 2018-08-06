@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    FAnasps - Secretaria Virtual
+                </a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Solicitações</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            A Verificar
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            {% for solicitation in new_solicitations %}
+                                <div class="alert alert-info">
+                                Nº {{solicitation.order}}
+                                <a href="{% url 'accounts:secsolicitationanalysis' sol_id=solicitation.pk %}" class="alert-link">Analisar</a>.
+                                </div>
+                            {% endfor %}
+                            <!--<div class="alert alert-success">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                            </div>
+                            <div class="alert alert-warning">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                            </div>
+                            <div class="alert alert-danger">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                            </div>-->
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Em análise pela coordenação
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            {% for solicitation in on_coordination_solicitations %}
+                                <div class="alert alert-info">
+                                Nº {{solicitation.order}}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Em análise pela Direção
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            {% for solicitation in on_director_solicitations %}
+                                <div class="alert alert-info">
+                                Nº {{solicitation.order}}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Em análise pelo Financeiro
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            {% for solicitation in on_finance_solicitation %}
+                                <div class="alert alert-info">
+                                Nº {{solicitation.order}}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Em análise pelo Napes
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            {% for solicitation in on_napes_solicitations %}
+                                <div class="alert alert-info">
+                                Nº {{solicitation.order}}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Em análise pela Biblioteca
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            {% for solicitation in on_library_solicitation %}
+                                <div class="alert alert-info">
+                                Nº {{solicitation.order}}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+{% endblock %}

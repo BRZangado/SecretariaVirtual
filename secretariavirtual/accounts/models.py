@@ -11,7 +11,7 @@ class Feedback(models.Model):
 	feedback = models.CharField(
 		('Parecer'),
 		help_text=("Parecer de certo funcionário"),
-		max_length=300,
+		max_length=500,
 	)
 
 	created_at = models.DateTimeField(
@@ -74,7 +74,7 @@ class Solicitation(models.Model):
 	student_academic_situation = models.CharField(
 		('Situação'),
 		help_text=("Situação Acadêmica do Estudante"),
-		max_length=30
+		max_length=50
 	)
 
 	solicitation = models.CharField(
@@ -96,7 +96,8 @@ class Solicitation(models.Model):
 	)
 
 	feedbacks = models.ManyToManyField(
-		Feedback
+		Feedback,
+		blank=True
 	)
 
 	def __str__(self):
@@ -190,7 +191,8 @@ class Usuario(models.Model):
 	)
 
 	solicitations = models.ManyToManyField(
-		Solicitation
+		Solicitation,
+		blank=True
 	)
 
 	def __str__(self):

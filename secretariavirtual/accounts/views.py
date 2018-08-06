@@ -53,19 +53,9 @@ class HomeSecretaryView(TemplateView, LoginRequiredMixin):
 	def get_context_data(self, **kwargs):
 
 		context = super(HomeSecretaryView, self).get_context_data(**kwargs)
-		new_solicitations = Solicitation.objects.filter(status=status[1])
-		on_director_solicitations = Solicitation.objects.filter(status=status[4])
-		on_coordination_solicitations = Solicitation.objects.filter(status=status[5])
-		on_napes_solicitations = Solicitation.objects.filter(status=status[6])
-		on_finance_solicitation = Solicitation.objects.filter(status=status[7])
-		on_library_solicitation = Solicitation.objects.filter(status=status[2])
+		solicitations = Solicitation.objects.all()
 
-		context['new_solicitations'] = new_solicitations
-		context['on_director_solicitations'] = on_director_solicitations
-		context['on_coordination_solicitations'] = on_coordination_solicitations
-		context['on_napes_solicitations'] = on_napes_solicitations
-		context['on_library_solicitation'] = on_library_solicitation
-		context['on_finance_solicitation'] = on_finance_solicitation
+		context['solicitations'] = solicitations
 
 		return context
 

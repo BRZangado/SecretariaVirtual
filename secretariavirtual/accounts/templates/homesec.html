@@ -36,7 +36,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Solicitações</h1>
+                    <h1 class="page-header">Requerimentos</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -49,11 +49,13 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            {% for solicitation in new_solicitations %}
-                                <div class="alert alert-info">
-                                Nº {{solicitation.order}}
-                                <a href="{% url 'accounts:secsolicitationanalysis' sol_id=solicitation.pk %}" class="alert-link">Analisar</a>.
-                                </div>
+                            {% for solicitation in solicitations %}
+                                {% if solicitation.status == "Em análise pela Secretaria" %}
+                                    <div class="alert alert-info">
+                                    Nº {{solicitation.order}}
+                                    <a href="{% url 'accounts:secsolicitationanalysis' sol_id=solicitation.pk %}" class="alert-link">Analisar</a>.
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                             <!--<div class="alert alert-success">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
@@ -79,10 +81,12 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            {% for solicitation in on_coordination_solicitations %}
-                                <div class="alert alert-info">
-                                Nº {{solicitation.order}}
-                                </div>
+                            {% for solicitation in solicitations %}
+                                {% if solicitation.status == "Em análise pela Coordenação" %}
+                                    <div class="alert alert-info">
+                                    Nº {{solicitation.order}}
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <!-- .panel-body -->
@@ -96,10 +100,12 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            {% for solicitation in on_director_solicitations %}
-                                <div class="alert alert-info">
-                                Nº {{solicitation.order}}
-                                </div>
+                            {% for solicitation in solicitations %}
+                                {% if solicitation.status == "Em análise pela Diretoria" %}
+                                    <div class="alert alert-info">
+                                    Nº {{solicitation.order}}
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <!-- .panel-body -->
@@ -116,10 +122,12 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            {% for solicitation in on_finance_solicitation %}
-                                <div class="alert alert-info">
-                                Nº {{solicitation.order}}
-                                </div>
+                            {% for solicitation in solicitations %}
+                                {% if solicitation.status == "Em análise pelo Financeiro" %}
+                                    <div class="alert alert-info">
+                                    Nº {{solicitation.order}}
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <!-- .panel-body -->
@@ -133,10 +141,12 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            {% for solicitation in on_napes_solicitations %}
-                                <div class="alert alert-info">
-                                Nº {{solicitation.order}}
-                                </div>
+                            {% for solicitation in solicitations %}
+                                {% if solicitation.status == "Em análise pelo NAPES" %}
+                                    <div class="alert alert-info">
+                                    Nº {{solicitation.order}}
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <!-- .panel-body -->
@@ -153,10 +163,12 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            {% for solicitation in on_library_solicitation %}
-                                <div class="alert alert-info">
-                                Nº {{solicitation.order}}
-                                </div>
+                            {% for solicitation in solicitations %}
+                                {% if solicitation.status == "Em análise pela Biblioteca" %}
+                                    <div class="alert alert-info">
+                                    Nº {{solicitation.order}}
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <!-- .panel-body -->

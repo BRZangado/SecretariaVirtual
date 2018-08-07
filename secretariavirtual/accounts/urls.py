@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from .views import (
 	HomeAlunoView, HomeSecretaryView, AnalysisSecretaryView,
-	send_solitation_to
+	send_solitation_to, logout
 	)
 
 app_name = 'accounts'
@@ -16,6 +16,10 @@ urlpatterns = [
 	path('home/secretaria/',
 		HomeSecretaryView.as_view(),
 		name='homesecretaria'
+	),
+	path('home/logout/',
+		logout,
+		name='logout'
 	),
 	path('home/secretaria/analisarsolicitacao/<int:sol_id>',
 		AnalysisSecretaryView.as_view(),

@@ -4,7 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout
+from django.contrib.auth import logout as django_logout
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.views.generic import TemplateView, FormView
@@ -109,3 +110,7 @@ def send_solitation_to(request, sol_id, status_to):
 	solicitation.save()
 
 	return HttpResponseRedirect(reverse('accounts:homesecretaria'))
+
+def logout(request):
+	django_logout(request)
+	return HttpResponseRedirect(reverse('core:index'))

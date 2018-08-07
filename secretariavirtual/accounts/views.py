@@ -224,6 +224,19 @@ class AnalysisCoordinationView(FormView, LoginRequiredMixin):
 		solicitation.save()
 
 		return HttpResponseRedirect(reverse('accounts:homecoordination'))
+		
+	def get_context_data(self, **kwargs):
+
+		context = super(AnalysisCoordinationView, self).get_context_data(**kwargs)
+		solicitation = self.get_solicitation()
+		context['solicitation'] = solicitation
+
+		return context
+
+	def get_solicitation(self):
+
+		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
+		return solicitation
 
 
 class HomeLibraryView(TemplateView, LoginRequiredMixin):

@@ -4,7 +4,8 @@ from .views import (
 	HomeAlunoView, HomeSecretaryView, AnalysisSecretaryView,
 	send_solitation_to, logout, HomeDirectorView, AnalysisDirectorView,
 	AnalysisCoordinationView, HomeCoordinationView, HomeLibraryView,
-	AnalysisLibraryView
+	AnalysisLibraryView, HomeFinanceView, AnalysisFinanceView,
+	HomeNapesView, AnalysisNapesView
 )
 
 app_name = 'accounts'
@@ -31,6 +32,14 @@ urlpatterns = [
 		HomeLibraryView.as_view(),
 		name='homelibrary'
 	),
+	path('home/financeiro/',
+		HomeFinanceView.as_view(),
+		name='homefinance'
+	),
+	path('home/napes/',
+		HomeNapesView.as_view(),
+		name='homenapes'
+	),
 	path('home/logout/',
 		logout,
 		name='logout'
@@ -50,6 +59,14 @@ urlpatterns = [
 	path('home/biblioteca/analisarsolicitacao/<int:sol_id>',
 		AnalysisLibraryView.as_view(),
 		name='libsolicitationanalysis'
+	),
+	path('home/financeiro/analisarsolicitacao/<int:sol_id>',
+		AnalysisFinanceView.as_view(),
+		name='finsolicitationanalysis'
+	),
+	path('home/napes/analisarsolicitacao/<int:sol_id>',
+		AnalysisNapesView.as_view(),
+		name='napessolicitationanalysis'
 	),
 	path('home/secretaria/enviarsolicitacao/<int:sol_id>/<int:status_to>',
 		send_solitation_to,

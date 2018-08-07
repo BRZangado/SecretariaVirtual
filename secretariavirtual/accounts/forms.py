@@ -110,3 +110,24 @@ class LibrarySolicitationForm(forms.Form):
         max_length=500,
         widget=forms.Textarea,
     )
+
+class FinanceSolicitationForm(forms.Form):
+
+    feedback = forms.CharField(
+        label=("Parecer"),
+        help_text=("Parecer do Financeiro"),
+        max_length=500,
+        widget=forms.Textarea,
+    )
+
+
+class NapesSolicitationForm(forms.Form):
+
+    feedback = forms.CharField(
+        label=("Parecer"),
+        help_text=("Parecer do NAPES"),
+        max_length=500,
+        widget=forms.Textarea,
+    )
+
+    

@@ -13,7 +13,8 @@ import random
 
 from .forms import (
 	StudentSolicitationForm, SecretarySolicitationForm, DirectorSolicitationForm,
-	CoordinationSolicitationForm, LibrarySolicitationForm
+	CoordinationSolicitationForm, LibrarySolicitationForm, FinanceSolicitationForm,
+	NapesSolicitationForm
 )
 from .models import Solicitation, Feedback
 from .status import status
@@ -266,6 +267,125 @@ class AnalysisLibraryView(FormView, LoginRequiredMixin):
 
 		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
 		return solicitation
+
+
+class HomeFinanceView(TemplateView, LoginRequiredMixin):
+
+	template_name = 'homefinance.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(HomeFinanceView, self).get_context_data(**kwargs)
+		solicitations = Solicitation.objects.all()
+
+		context['solicitations'] = solicitations
+
+		return context
+
+
+class AnalysisFinanceView(FormView, LoginRequiredMixin):
+	
+	template_name = 'financeanalysis.html'
+	form_class = FinanceSolicitationForm
+
+	def form_valid(self, form):
+
+		solicitation = self.get_solicitation()
+
+		for feedback in solicitation.feedbacks.all():
+			if feedback.feedbacker.usuario.is_finance:
+				solicitation.feedbacks.remove(feedback)
+				feedback.delete()
+
+		feedback_from_form = form.cleaned_data['feedback']
+
+		new_feedback = Feedback(
+			feedbacker=self.request.user,
+			feedback=feedback_from_form
+		)
+
+		new_feedback.save()
+
+		solicitation.feedbacks.add(new_feedback)
+		solicitation.save()
+
+		solicitation.status = status[1]
+		solicitation.save()
+
+		return HttpResponseRedirect(reverse('accounts:homefinance'))
+
+	def get_context_data(self, **kwargs):
+
+		context = super(AnalysisFinanceView, self).get_context_data(**kwargs)
+		solicitation = self.get_solicitation()
+		context['solicitation'] = solicitation
+
+		return context
+
+	def get_solicitation(self):
+
+		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
+		return solicitation
+
+
+class HomeNapesView(TemplateView, LoginRequiredMixin):
+
+	template_name = 'homenapes.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(HomeNapesView, self).get_context_data(**kwargs)
+		solicitations = Solicitation.objects.all()
+
+		context['solicitations'] = solicitations
+
+		return context
+
+
+class AnalysisNapesView(FormView, LoginRequiredMixin):
+	
+	template_name = 'napesanalysis.html'
+	form_class = NapesSolicitationForm
+
+	def form_valid(self, form):
+
+		solicitation = self.get_solicitation()
+
+		for feedback in solicitation.feedbacks.all():
+			if feedback.feedbacker.usuario.is_napes:
+				solicitation.feedbacks.remove(feedback)
+				feedback.delete()
+
+		feedback_from_form = form.cleaned_data['feedback']
+
+		new_feedback = Feedback(
+			feedbacker=self.request.user,
+			feedback=feedback_from_form
+		)
+
+		new_feedback.save()
+
+		solicitation.feedbacks.add(new_feedback)
+		solicitation.save()
+
+		solicitation.status = status[1]
+		solicitation.save()
+
+		return HttpResponseRedirect(reverse('accounts:homenapes'))
+
+	def get_context_data(self, **kwargs):
+
+		context = super(AnalysisNapesView, self).get_context_data(**kwargs)
+		solicitation = self.get_solicitation()
+		context['solicitation'] = solicitation
+
+		return context
+
+	def get_solicitation(self):
+
+		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
+		return solicitation
+
 
 def send_solitation_to(request, sol_id, status_to):
 

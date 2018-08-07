@@ -36,8 +36,10 @@ class LoginView(FormView):
             login(self.request, user)
             if user.usuario.is_student:
                 return HttpResponseRedirect(reverse('accounts:homealuno'))
-            if user.usuario.is_secretary:
+            elif user.usuario.is_secretary:
                 return HttpResponseRedirect(reverse('accounts:homesecretaria'))
+            elif user.usuario.is_director:
+                return HttpResponseRedirect(reverse('accounts:homediretoria'))
         else:
             return HttpResponseRedirect(reverse('accounts:invalid'))
 

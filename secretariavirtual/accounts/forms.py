@@ -82,3 +82,13 @@ class SecretarySolicitationForm(forms.Form):
         max_length=500,
         widget=forms.Textarea,
     )
+
+
+class DirectorSolicitationForm(forms.Form):
+
+    feedback = forms.CharField(
+        label=("Parecer"),
+        help_text=("Parecer da Direção"),
+        max_length=500,
+        widget=forms.Textarea,
+    )

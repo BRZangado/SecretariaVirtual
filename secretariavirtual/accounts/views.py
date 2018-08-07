@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.views.generic import TemplateView, FormView
 import random
 
-from .forms import StudentSolicitationForm, SecretarySolicitationForm
+from .forms import StudentSolicitationForm, SecretarySolicitationForm, DirectorSolicitationForm
 from .models import Solicitation, Feedback
 from .status import status
 # Get the custom user from settings
@@ -90,6 +90,58 @@ class AnalysisSecretaryView(FormView, LoginRequiredMixin):
 	def get_context_data(self, **kwargs):
 
 		context = super(AnalysisSecretaryView, self).get_context_data(**kwargs)
+		solicitation = self.get_solicitation()
+		context['solicitation'] = solicitation
+
+		return context
+
+	def get_solicitation(self):
+
+		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
+		return solicitation
+
+
+class HomeDirectorView(TemplateView, LoginRequiredMixin):
+
+	template_name = 'homedir.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(HomeDirectorView, self).get_context_data(**kwargs)
+		solicitations = Solicitation.objects.all()
+
+		context['solicitations'] = solicitations
+
+		return context
+
+
+class AnalysisDirectorView(FormView, LoginRequiredMixin):
+	
+	template_name = 'directoranalysis.html'
+	form_class = DirectorSolicitationForm
+
+	def form_valid(self, form):
+		feedback = form.cleaned_data['feedback']
+
+		feedback = Feedback(
+			feedbacker=self.request.user,
+			feedback=feedback
+		)
+
+		feedback.save()
+		
+		solicitation = self.get_solicitation()
+		solicitation.status = status[1]
+		solicitation.save()
+
+		solicitation.feedbacks.add(feedback)
+		solicitation.save()
+
+		return HttpResponseRedirect(reverse('accounts:homediretoria'))
+
+	def get_context_data(self, **kwargs):
+
+		context = super(AnalysisDirectorView, self).get_context_data(**kwargs)
 		solicitation = self.get_solicitation()
 		context['solicitation'] = solicitation
 

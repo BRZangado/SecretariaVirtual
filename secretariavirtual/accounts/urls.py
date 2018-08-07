@@ -5,7 +5,7 @@ from .views import (
 	send_solitation_to, logout, HomeDirectorView, AnalysisDirectorView,
 	AnalysisCoordinationView, HomeCoordinationView, HomeLibraryView,
 	AnalysisLibraryView, HomeFinanceView, AnalysisFinanceView,
-	HomeNapesView, AnalysisNapesView
+	HomeNapesView, AnalysisNapesView, StudentTrackSolicitationsView
 )
 
 app_name = 'accounts'
@@ -43,6 +43,10 @@ urlpatterns = [
 	path('home/logout/',
 		logout,
 		name='logout'
+	),
+	path('home/aluno/acompanharsolicitacao/',
+		StudentTrackSolicitationsView.as_view(),
+		name='mysolicitations'
 	),
 	path('home/secretaria/analisarsolicitacao/<int:sol_id>',
 		AnalysisSecretaryView.as_view(),

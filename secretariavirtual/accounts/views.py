@@ -51,6 +51,22 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 
 		return HttpResponseRedirect(reverse('accounts:homealuno'))
 
+
+class StudentTrackSolicitationsView(TemplateView, LoginRequiredMixin):
+
+	template_name = 'mysolicitations.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(StudentTrackSolicitationsView, self).get_context_data(**kwargs)
+		solicitations = Solicitation.objects.filter(
+			student=self.request.user
+		)
+
+		context['solicitations'] = solicitations
+
+		return context
+
 class HomeSecretaryView(TemplateView, LoginRequiredMixin):
 	
 	template_name = 'homesec.html'

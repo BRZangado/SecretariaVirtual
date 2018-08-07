@@ -24,10 +24,10 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                            <a href="{% url 'accounts:homealuno' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Acompanhar Solicitações</a>
+                            <a href="{% url 'accounts:mysolicitations' %}"><i class="fa fa-edit fa-fw"></i> Acompanhar Solicitações</a>
                         </li>
                         <li>
                             <a href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>

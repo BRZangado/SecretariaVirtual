@@ -53,6 +53,11 @@
                                 {% if solicitation.status == "Em análise pela Coordenação" %}
                                     <div class="alert alert-info">
                                     Nº {{solicitation.order}}
+                                    <br>
+                                    Aluno: {{solicitation.student.usuario.name}}
+                                    <br>
+                                    Solicitação: {{solicitation.solicitation}}
+                                    <br>
                                     <a href="{% url 'accounts:coordsolicitationanalysis' sol_id=solicitation.pk %}" class="alert-link">Analisar</a>.
                                     </div>
                                 {% endif %}

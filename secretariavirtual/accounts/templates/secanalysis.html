@@ -67,34 +67,44 @@
                         {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_secretary %}
                                 <div class="panel-body">
-                                    <b>Parecer da Biblioteca:</b> <br>
+                                    <b>Parecer da Secretaria:</b> <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
+                        {% endfor %}
+                        {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_library %}
                                 <div class="panel-body">
                                     Parecer da Biblioteca: <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
+                        {% endfor %}
+                        {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_finance %}
                                 <div class="panel-body">
                                     Parecer do Financeiro: <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
+                        {% endfor %}
+                        {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_napes %}
                                 <div class="panel-body">
                                     Parecer do NAPES: <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
+                        {% endfor %}
+                        {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_director %}
                                 <div class="panel-body">
                                     Parecer da Direção: <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
+                        {% endfor %}
+                        {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_coordination %}
                                 <div class="panel-body">
                                     Parecer da Coordenação: <br>
@@ -103,7 +113,7 @@
                             {% endif %}
                         {% endfor %}
                         <!-- /.panel-body -->
-                        <button type="button" class="btn btn-success">Encerrar Requerimento</button>
+                        <button type="button" class="btn btn-success mg-10">Encerrar Requerimento</button>
                     </div>
                     <!-- /.panel -->
                 </div>
@@ -116,11 +126,11 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=2 %}">Enviar para Biblioteca</a><br><br>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=7 %}">Enviar para Financeiro</a><br><br>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=6 %}">Enviar para NAPES</a><br><br>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=4 %}">Enviar para Direção</a><br><br>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=5 %}">Enviar para Coordenação</a><br><br>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=2 %}">Enviar para Biblioteca</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=7 %}">Enviar para Financeiro</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=6 %}">Enviar para NAPES</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=4 %}">Enviar para Direção</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=5 %}">Enviar para Coordenação</a>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
@@ -132,35 +142,37 @@
                 <!-- /.col-lg-12 -->
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <form role="form" method="post">{% csrf_token %}
-                                    <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>{% render_field form.student_academic_situation.label %}</label>
-                                                {% render_field form.student_academic_situation class="form-control" type="text" placeholder=form.student_academic_situation.help_text %}
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{% render_field form.feedback.label %}</label>
-                                                {% render_field form.feedback class="form-control" placeholder=form.feedback.help_text %}
-                                            </div>
-                                            <button type="submit" class="btn btn-default">Enviar</button>
-                                            <button type="reset" class="btn btn-default">Resetar</button>
-                                    </div>
-                                </form>
-                                <!-- /.col-lg-6 (nested) -->
+            {% if solicitation.student_academic_situation == "Situação acadêmica ainda não informada" %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <form role="form" method="post">{% csrf_token %}
+                                        <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>{% render_field form.student_academic_situation.label %}</label>
+                                                    {% render_field form.student_academic_situation class="form-control" type="text" placeholder=form.student_academic_situation.help_text %}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{% render_field form.feedback.label %}</label>
+                                                    {% render_field form.feedback class="form-control" placeholder=form.feedback.help_text %}
+                                                </div>
+                                                <button type="submit" class="btn btn-default">Enviar</button>
+                                                <button type="reset" class="btn btn-default">Resetar</button>
+                                        </div>
+                                    </form>
+                                    <!-- /.col-lg-6 (nested) -->
+                                </div>
+                                <!-- /.row (nested) -->
                             </div>
-                            <!-- /.row (nested) -->
+                            <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
+            {% endif %}
             <!-- /.row -->
 
         </div>

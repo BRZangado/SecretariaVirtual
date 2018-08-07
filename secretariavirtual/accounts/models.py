@@ -74,7 +74,8 @@ class Solicitation(models.Model):
 	student_academic_situation = models.CharField(
 		('Situação'),
 		help_text=("Situação Acadêmica do Estudante"),
-		max_length=50
+		max_length=50,
+		default=('Situação acadêmica ainda não informada')
 	)
 
 	solicitation = models.CharField(

@@ -92,3 +92,21 @@ class DirectorSolicitationForm(forms.Form):
         max_length=500,
         widget=forms.Textarea,
     )
+
+class CoordinationSolicitationForm(forms.Form):
+
+    feedback = forms.CharField(
+        label=("Parecer"),
+        help_text=("Parecer da Coordenação"),
+        max_length=500,
+        widget=forms.Textarea,
+    )
+
+class LibrarySolicitationForm(forms.Form):
+
+    feedback = forms.CharField(
+        label=("Parecer"),
+        help_text=("Parecer da Biblioteca"),
+        max_length=500,
+        widget=forms.Textarea,
+    )

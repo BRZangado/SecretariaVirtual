@@ -11,7 +11,10 @@ from django.contrib import messages
 from django.views.generic import TemplateView, FormView
 import random
 
-from .forms import StudentSolicitationForm, SecretarySolicitationForm, DirectorSolicitationForm
+from .forms import (
+	StudentSolicitationForm, SecretarySolicitationForm, DirectorSolicitationForm,
+	CoordinationSolicitationForm, LibrarySolicitationForm
+)
 from .models import Solicitation, Feedback
 from .status import status
 # Get the custom user from settings
@@ -149,6 +152,111 @@ class AnalysisDirectorView(FormView, LoginRequiredMixin):
 	def get_context_data(self, **kwargs):
 
 		context = super(AnalysisDirectorView, self).get_context_data(**kwargs)
+		solicitation = self.get_solicitation()
+		context['solicitation'] = solicitation
+
+		return context
+
+	def get_solicitation(self):
+
+		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
+		return solicitation
+
+
+class HomeCoordinationView(TemplateView, LoginRequiredMixin):
+
+	template_name = 'homecoord.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(HomeCoordinationView, self).get_context_data(**kwargs)
+		solicitations = Solicitation.objects.all()
+
+		context['solicitations'] = solicitations
+
+		return context
+
+
+class AnalysisCoordinationView(FormView, LoginRequiredMixin):
+	
+	template_name = 'coordinationanalysis.html'
+	form_class = CoordinationSolicitationForm
+
+	def form_valid(self, form):
+
+		solicitation = self.get_solicitation()
+
+		for feedback in solicitation.feedbacks.all():
+			if feedback.feedbacker.usuario.is_coordination:
+				solicitation.feedbacks.remove(feedback)
+				feedback.delete()
+
+		feedback_from_form = form.cleaned_data['feedback']
+
+		new_feedback = Feedback(
+			feedbacker=self.request.user,
+			feedback=feedback_from_form
+		)
+
+		new_feedback.save()
+
+		solicitation.feedbacks.add(new_feedback)
+		solicitation.save()
+
+		solicitation.status = status[1]
+		solicitation.save()
+
+		return HttpResponseRedirect(reverse('accounts:homecoordination'))
+
+
+class HomeLibraryView(TemplateView, LoginRequiredMixin):
+
+	template_name = 'homelibrary.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(HomeLibraryView, self).get_context_data(**kwargs)
+		solicitations = Solicitation.objects.all()
+
+		context['solicitations'] = solicitations
+
+		return context
+
+
+class AnalysisLibraryView(FormView, LoginRequiredMixin):
+	
+	template_name = 'libraryanalysis.html'
+	form_class = LibrarySolicitationForm
+
+	def form_valid(self, form):
+
+		solicitation = self.get_solicitation()
+
+		for feedback in solicitation.feedbacks.all():
+			if feedback.feedbacker.usuario.is_library:
+				solicitation.feedbacks.remove(feedback)
+				feedback.delete()
+
+		feedback_from_form = form.cleaned_data['feedback']
+
+		new_feedback = Feedback(
+			feedbacker=self.request.user,
+			feedback=feedback_from_form
+		)
+
+		new_feedback.save()
+
+		solicitation.feedbacks.add(new_feedback)
+		solicitation.save()
+
+		solicitation.status = status[1]
+		solicitation.save()
+
+		return HttpResponseRedirect(reverse('accounts:homelibrary'))
+
+	def get_context_data(self, **kwargs):
+
+		context = super(AnalysisLibraryView, self).get_context_data(**kwargs)
 		solicitation = self.get_solicitation()
 		context['solicitation'] = solicitation
 

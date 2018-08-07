@@ -40,6 +40,10 @@ class LoginView(FormView):
                 return HttpResponseRedirect(reverse('accounts:homesecretaria'))
             elif user.usuario.is_director:
                 return HttpResponseRedirect(reverse('accounts:homediretoria'))
+            elif user.usuario.is_coordination:
+                return HttpResponseRedirect(reverse('accounts:homecoordination'))
+            elif user.usuario.is_library:
+                return HttpResponseRedirect(reverse('accounts:homelibrary'))
         else:
             return HttpResponseRedirect(reverse('accounts:invalid'))
 

@@ -76,7 +76,7 @@
                         {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_library %}
                                 <div class="panel-body">
-                                    Parecer da Biblioteca: <br>
+                                    <b>Parecer da Biblioteca:</b> <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
@@ -84,7 +84,7 @@
                         {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_finance %}
                                 <div class="panel-body">
-                                    Parecer do Financeiro: <br>
+                                    <b>Parecer do Financeiro:</b> <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
@@ -92,7 +92,7 @@
                         {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_napes %}
                                 <div class="panel-body">
-                                    Parecer do NAPES: <br>
+                                    <b>Parecer do NAPES:</b> <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
@@ -100,7 +100,7 @@
                         {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_director %}
                                 <div class="panel-body">
-                                    Parecer da Direção: <br>
+                                    <b>Parecer da Direção:</b> <br>
                                     {{feedback}}
                                 </div>
                             {% endif %}
@@ -108,7 +108,7 @@
                         {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_coordination %}
                                 <div class="panel-body">
-                                    Parecer da Coordenação: <br>
+                                    <b>Parecer da Coordenação:</b> <br>
                                     {{feedback}}
                                 </div>4
                             {% endif %}

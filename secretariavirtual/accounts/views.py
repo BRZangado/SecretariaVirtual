@@ -121,20 +121,27 @@ class AnalysisDirectorView(FormView, LoginRequiredMixin):
 	form_class = DirectorSolicitationForm
 
 	def form_valid(self, form):
-		feedback = form.cleaned_data['feedback']
 
-		feedback = Feedback(
+		solicitation = self.get_solicitation()
+
+		for feedback in solicitation.feedbacks.all():
+			if feedback.feedbacker.usuario.is_director:
+				solicitation.feedbacks.remove(feedback)
+				feedback.delete()
+
+		feedback_from_form = form.cleaned_data['feedback']
+
+		new_feedback = Feedback(
 			feedbacker=self.request.user,
-			feedback=feedback
+			feedback=feedback_from_form
 		)
 
-		feedback.save()
-		
-		solicitation = self.get_solicitation()
-		solicitation.status = status[1]
+		new_feedback.save()
+
+		solicitation.feedbacks.add(new_feedback)
 		solicitation.save()
 
-		solicitation.feedbacks.add(feedback)
+		solicitation.status = status[1]
 		solicitation.save()
 
 		return HttpResponseRedirect(reverse('accounts:homediretoria'))

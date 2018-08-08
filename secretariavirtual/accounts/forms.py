@@ -84,4 +84,5 @@ class SecretarySolicitationForm(GenericFeedbackForm):
         label=("Situação Acadêmica"),
         help_text=("Situação Acadêmica do Estudante"),
         max_length=50,
+        required=False
     )

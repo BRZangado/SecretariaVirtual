@@ -86,21 +86,27 @@ class AnalysisSecretaryView(FormView, LoginRequiredMixin):
 
 	def form_valid(self, form):
 
-		student_academic_situation = form.cleaned_data['student_academic_situation']
-		feedback = form.cleaned_data['feedback']
+		solicitation = self.get_solicitation()
 
-		feedback = Feedback(
+		for feedback in solicitation.feedbacks.all():
+			if feedback.feedbacker.usuario.is_secretary:
+				solicitation.feedbacks.remove(feedback)
+				feedback.delete()
+
+		student_academic_situation = form.cleaned_data['student_academic_situation']
+		feedback_from_form = form.cleaned_data['feedback']
+
+		new_feedback = Feedback(
 			feedbacker=self.request.user,
-			feedback=feedback
+			feedback=feedback_from_form
 		)
 
-		feedback.save()
-		
-		solicitation = self.get_solicitation()
+		new_feedback.save()
+
 		solicitation.student_academic_situation = student_academic_situation
 		solicitation.save()
 
-		solicitation.feedbacks.add(feedback)
+		solicitation.feedbacks.add(new_feedback)
 		solicitation.save()
 
 		return HttpResponseRedirect(reverse('accounts:homesecretaria'))

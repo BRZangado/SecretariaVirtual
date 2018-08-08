@@ -6,7 +6,7 @@ from .views import (
 	AnalysisCoordinationView, HomeCoordinationView, HomeLibraryView,
 	AnalysisLibraryView, HomeFinanceView, AnalysisFinanceView,
 	HomeNapesView, AnalysisNapesView, StudentTrackSolicitationsView,
-	ClosedSolicitationsView, ClosedSolicitationsByYearView
+	ClosedSolicitationsView, ClosedSolicitationsByYearView, write_solicitation_to_docx
 )
 
 app_name = 'accounts'
@@ -28,6 +28,10 @@ urlpatterns = [
 	path('home/secretaria/requerimentos-encerrados/<int:sol_year>',
 		ClosedSolicitationsByYearView.as_view(),
 		name='closedsolicitationsbyyear'
+	),
+	path('home/secretaria/requerimentos-encerrados/imprimir/<int:sol_id>',
+		write_solicitation_to_docx,
+		name='writedocument'
 	),
 	path('home/diretoria/',
 		HomeDirectorView.as_view(),

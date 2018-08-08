@@ -45,6 +45,34 @@ class Solicitation(models.Model):
 		on_delete=models.CASCADE
 	)
 
+	email = models.CharField(
+		('E-mail'),
+		help_text=("E-mail do usuário"),
+		max_length=50,
+		default=("E-mail não informado")
+	)
+
+	classs = models.CharField(
+		('Turma'),
+		help_text=("Turma do Aluno"),
+		max_length=10,
+		default=("Turma não informada")
+	)
+
+	phone1 = models.CharField(
+		('Telefone 1'),
+		help_text=("Telefone principal do Aluno"),
+		max_length=12,
+		default=("Telefone não informado")
+	)
+
+	phone2 = models.CharField(
+		('Telefone 2'),
+		help_text=("Telefone secundário do Aluno"),
+		max_length=12,
+		default=("Telefone não informado")
+	)
+
 	order = models.CharField(
 		('Processo'),
 		unique=True,

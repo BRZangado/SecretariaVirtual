@@ -62,6 +62,7 @@
                             </div>
                             <!-- .panel-body -->
                             <a class="btn btn-info mg-10" href="{% url 'accounts:changestatus' sol_id=solicitation.pk status_to=1 %}">Reabrir Requerimento</a>
+                            <a class="btn btn-info mg-10" href="{% url 'accounts:writedocument' sol_id=solicitation.pk %}">Imprimir Requerimento</a>
                         </div>
                         <!-- /.panel -->
                     </div>

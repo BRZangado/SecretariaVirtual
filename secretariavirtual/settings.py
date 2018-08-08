@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mailmerge',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -68,66 +68,20 @@ class StudentSolicitationForm(forms.Form):
         help_text=("Digite a justificativa da solicitação"),
     )
 
-class SecretarySolicitationForm(forms.Form):
+
+class GenericFeedbackForm(forms.Form):
+
+    feedback = forms.CharField(
+        label=("Parecer"),
+        max_length=500,
+        widget=forms.Textarea,
+    )
+        
+
+class SecretarySolicitationForm(GenericFeedbackForm):
 
     student_academic_situation = forms.CharField(
         label=("Situação Acadêmica"),
         help_text=("Situação Acadêmica do Estudante"),
         max_length=50,
     )
-
-    feedback = forms.CharField(
-        label=("Parecer"),
-        help_text=("Parecer da Secretaria"),
-        max_length=500,
-        widget=forms.Textarea,
-    )
-
-
-class DirectorSolicitationForm(forms.Form):
-
-    feedback = forms.CharField(
-        label=("Parecer"),
-        help_text=("Parecer da Direção"),
-        max_length=500,
-        widget=forms.Textarea,
-    )
-
-class CoordinationSolicitationForm(forms.Form):
-
-    feedback = forms.CharField(
-        label=("Parecer"),
-        help_text=("Parecer da Coordenação"),
-        max_length=500,
-        widget=forms.Textarea,
-    )
-
-class LibrarySolicitationForm(forms.Form):
-
-    feedback = forms.CharField(
-        label=("Parecer"),
-        help_text=("Parecer da Biblioteca"),
-        max_length=500,
-        widget=forms.Textarea,
-    )
-
-class FinanceSolicitationForm(forms.Form):
-
-    feedback = forms.CharField(
-        label=("Parecer"),
-        help_text=("Parecer do Financeiro"),
-        max_length=500,
-        widget=forms.Textarea,
-    )
-
-
-class NapesSolicitationForm(forms.Form):
-
-    feedback = forms.CharField(
-        label=("Parecer"),
-        help_text=("Parecer do NAPES"),
-        max_length=500,
-        widget=forms.Textarea,
-    )
-
-    

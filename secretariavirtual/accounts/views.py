@@ -12,9 +12,7 @@ from django.views.generic import TemplateView, FormView
 import random
 
 from .forms import (
-	StudentSolicitationForm, SecretarySolicitationForm, DirectorSolicitationForm,
-	CoordinationSolicitationForm, LibrarySolicitationForm, FinanceSolicitationForm,
-	NapesSolicitationForm
+	StudentSolicitationForm, SecretarySolicitationForm, GenericFeedbackForm
 )
 from .models import Solicitation, Feedback
 from .status import status
@@ -138,7 +136,7 @@ class HomeDirectorView(TemplateView, LoginRequiredMixin):
 class AnalysisDirectorView(FormView, LoginRequiredMixin):
 	
 	template_name = 'directoranalysis.html'
-	form_class = DirectorSolicitationForm
+	form_class = GenericFeedbackForm
 
 	def form_valid(self, form):
 
@@ -197,7 +195,7 @@ class HomeCoordinationView(TemplateView, LoginRequiredMixin):
 class AnalysisCoordinationView(FormView, LoginRequiredMixin):
 	
 	template_name = 'coordinationanalysis.html'
-	form_class = CoordinationSolicitationForm
+	form_class = GenericFeedbackForm
 
 	def form_valid(self, form):
 
@@ -256,7 +254,7 @@ class HomeLibraryView(TemplateView, LoginRequiredMixin):
 class AnalysisLibraryView(FormView, LoginRequiredMixin):
 	
 	template_name = 'libraryanalysis.html'
-	form_class = LibrarySolicitationForm
+	form_class = GenericFeedbackForm
 
 	def form_valid(self, form):
 
@@ -315,7 +313,7 @@ class HomeFinanceView(TemplateView, LoginRequiredMixin):
 class AnalysisFinanceView(FormView, LoginRequiredMixin):
 	
 	template_name = 'financeanalysis.html'
-	form_class = FinanceSolicitationForm
+	form_class = GenericFeedbackForm
 
 	def form_valid(self, form):
 
@@ -374,7 +372,7 @@ class HomeNapesView(TemplateView, LoginRequiredMixin):
 class AnalysisNapesView(FormView, LoginRequiredMixin):
 	
 	template_name = 'napesanalysis.html'
-	form_class = NapesSolicitationForm
+	form_class = GenericFeedbackForm
 
 	def form_valid(self, form):
 

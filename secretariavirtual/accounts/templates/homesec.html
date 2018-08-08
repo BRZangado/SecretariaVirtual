@@ -24,6 +24,9 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
+                            <a href="{% url 'accounts:closedsolicitations' %}"><i class="fas fa-sign-out-alt"></i> Requerimentos Encerrados</a>
+                        </li>
+                        <li>
                             <a href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
                         </li>
                     </ul>
@@ -55,6 +58,8 @@
                                     Nº {{solicitation.order}}
                                     <br>
                                     Aluno: {{solicitation.student.usuario.name}}
+                                    <br>
+                                    Matrícula: {{solicitation.code}}
                                     <br>
                                     Solicitação: {{solicitation.solicitation}}
                                     <br>

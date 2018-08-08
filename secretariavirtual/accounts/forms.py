@@ -46,6 +46,7 @@ class StudentSolicitationForm(forms.Form):
         max_length=20,
         label=("Matrícula"),
         help_text=("Digite sua matrícula"),
+        required=True,
     )
     phone_one = forms.CharField(
         max_length=20,

@@ -2,10 +2,11 @@ from django.contrib import admin
 from django.urls import include, path
 from .views import (
 	HomeAlunoView, HomeSecretaryView, AnalysisSecretaryView,
-	send_solitation_to, logout, HomeDirectorView, AnalysisDirectorView,
+	change_status, logout, HomeDirectorView, AnalysisDirectorView,
 	AnalysisCoordinationView, HomeCoordinationView, HomeLibraryView,
 	AnalysisLibraryView, HomeFinanceView, AnalysisFinanceView,
-	HomeNapesView, AnalysisNapesView, StudentTrackSolicitationsView
+	HomeNapesView, AnalysisNapesView, StudentTrackSolicitationsView,
+	ClosedSolicitationsView, ClosedSolicitationsByYearView
 )
 
 app_name = 'accounts'
@@ -19,6 +20,14 @@ urlpatterns = [
 	path('home/secretaria/',
 		HomeSecretaryView.as_view(),
 		name='homesecretaria'
+	),
+	path('home/secretaria/requerimentos-encerrados/',
+		ClosedSolicitationsView.as_view(),
+		name='closedsolicitations'
+	),
+	path('home/secretaria/requerimentos-encerrados/<int:sol_year>',
+		ClosedSolicitationsByYearView.as_view(),
+		name='closedsolicitationsbyyear'
 	),
 	path('home/diretoria/',
 		HomeDirectorView.as_view(),
@@ -72,9 +81,9 @@ urlpatterns = [
 		AnalysisNapesView.as_view(),
 		name='napessolicitationanalysis'
 	),
-	path('home/secretaria/enviarsolicitacao/<int:sol_id>/<int:status_to>',
-		send_solitation_to,
-		name='enviarsolicitacao'
+	path('home/secretaria/trocar-status/<int:sol_id>/<int:status_to>',
+		change_status,
+		name='changestatus'
 	),
 
 ]

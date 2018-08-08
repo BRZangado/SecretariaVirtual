@@ -56,6 +56,8 @@
                                     <br>
                                     Aluno: {{solicitation.student.usuario.name}}
                                     <br>
+                                    Matrícula: {{solicitation.code}}
+                                    <br>
                                     Solicitação: {{solicitation.solicitation}}
                                     <br>
                                     <a href="{% url 'accounts:libsolicitationanalysis' sol_id=solicitation.pk %}" class="alert-link">Analisar</a>.

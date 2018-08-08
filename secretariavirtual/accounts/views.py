@@ -27,6 +27,7 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 	def form_valid(self, form):
 
 		email = form.cleaned_data['email']
+		code = form.cleaned_data['code']
 		course = form.cleaned_data['course']
 		semester = form.cleaned_data['semester']
 		classs = form.cleaned_data['classs']
@@ -42,7 +43,8 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 			classs=classs,
 			solicitation=solicitation,
 			reason=justification,
-			status=status[1]
+			status=status[1],
+			code=code
 		)
 
 		new_solicitation.save()
@@ -123,6 +125,59 @@ class AnalysisSecretaryView(FormView, LoginRequiredMixin):
 
 		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
 		return solicitation
+
+
+class ClosedSolicitationsView(TemplateView, LoginRequiredMixin):
+	
+	template_name = 'closedsolicitations.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(ClosedSolicitationsView, self).get_context_data(**kwargs)
+
+		years = []
+
+		closed_solicitations = Solicitation.objects.filter(
+			status=status[0]
+		)
+
+		for solicitation in closed_solicitations:
+			years.append(solicitation.created_at.year)
+
+		unique_years = set(years)
+
+		for year in unique_years:
+			print(year)
+
+		context['years'] = unique_years
+
+		return context
+
+
+class ClosedSolicitationsByYearView(TemplateView, LoginRequiredMixin):
+
+	template_name = 'closed_solicitations_by_year.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(ClosedSolicitationsByYearView, self).get_context_data(**kwargs)
+		context['closed_solicitations_by_year'] = self.get_solicitations()
+
+		return context
+
+	def get_solicitations(self):
+
+		closed_solicitations_by_year = []
+
+		solicitations = Solicitation.objects.filter(
+			status=status[0]
+		)
+
+		for solicitation in solicitations:
+			if solicitation.created_at.year == self.kwargs.get('sol_year'):
+				closed_solicitations_by_year.append(solicitation)
+
+		return closed_solicitations_by_year
 
 
 class HomeDirectorView(TemplateView, LoginRequiredMixin):
@@ -420,7 +475,7 @@ class AnalysisNapesView(FormView, LoginRequiredMixin):
 		return solicitation
 
 
-def send_solitation_to(request, sol_id, status_to):
+def change_status(request, sol_id, status_to):
 
 	solicitation_status = status[status_to]
 

@@ -7,6 +7,14 @@ body {
   margin: 0;
   background-color: #f8f8f8;
 }
+.img-200{
+  height: 100px;
+  width: 100px;
+}
+#img-200{
+  height: 100px;
+  width: 100px;
+}
 .mg-10{
   margin-bottom: 5px;
   margin-right: 5px;

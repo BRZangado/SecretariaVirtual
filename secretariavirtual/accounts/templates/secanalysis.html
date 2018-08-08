@@ -45,12 +45,12 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=2 %}">Enviar para Biblioteca</a>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=7 %}">Enviar para Financeiro</a>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=6 %}">Enviar para NAPES</a>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=4 %}">Enviar para Direção</a>
-                                <a class="btn btn-info mg-10" href="{% url 'accounts:enviarsolicitacao' sol_id=solicitation.pk status_to=5 %}">Enviar para Coordenação</a>
-                                <a class="btn btn-danger mg-10" href="#">Encerrar Requerimento</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:changestatus' sol_id=solicitation.pk status_to=2 %}">Enviar para Biblioteca</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:changestatus' sol_id=solicitation.pk status_to=7 %}">Enviar para Financeiro</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:changestatus' sol_id=solicitation.pk status_to=6 %}">Enviar para NAPES</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:changestatus' sol_id=solicitation.pk status_to=4 %}">Enviar para Direção</a>
+                                <a class="btn btn-info mg-10" href="{% url 'accounts:changestatus' sol_id=solicitation.pk status_to=5 %}">Enviar para Coordenação</a>
+                                <a class="btn btn-danger mg-10" href="{% url 'accounts:changestatus' sol_id=solicitation.pk status_to=0 %}">Encerrar Requerimento</a>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->

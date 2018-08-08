@@ -52,6 +52,13 @@ class Solicitation(models.Model):
 		max_length=15
 	)
 
+	code = models.CharField(
+		("Matrícula"),
+        max_length=20,
+        help_text=("Matrícula do Estudante"),
+        default=('Matrícula não informada')
+    )
+
 	created_at = models.DateTimeField(
 		('Data'),
     	help_text=("Data que a solicitação foi criada"),

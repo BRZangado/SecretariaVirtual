@@ -2,12 +2,14 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Informações do Requerimento Nº {{solicitation.order}}
+                            Informações do Requerimento Nº {{solicitation.order}} | Status: {{solicitation.status}}
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
                            Aluno: {{solicitation.student.usuario.name}}
                            <br>
+                           Matrícula: {{solicitation.code}}
+                            <br>
                            Período: {{solicitation.student_semester}}
                            <br>
                            Turma: {{solicitation.classs}}
@@ -18,17 +20,7 @@
                            <br>
                            Justificativa: {{solicitation.reason}}
                            <br>
-                        </div>
-                        <!-- .panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
                         {% for feedback in solicitation.feedbacks.all %}
                             {% if feedback.feedbacker.usuario.is_secretary %}
                                 <div class="panel-body">
@@ -77,8 +69,8 @@
                                 </div>
                             {% endif %}
                         {% endfor %}
-                        <!-- /.panel-body -->
+                        </div>
+                        <!-- .panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->

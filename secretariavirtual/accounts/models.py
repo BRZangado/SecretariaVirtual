@@ -215,6 +215,12 @@ class Usuario(models.Model):
 		default=False
 	)
 
+	is_caa = models.BooleanField(
+		('Is CAA?'),
+		help_text=("Verificar se o usuário é da Central de Atendimento ao Aluno"),
+		default=False
+	)
+
 	created_at = models.DateTimeField(
 		('Created at'),
     	help_text=("Date that the user is created."),

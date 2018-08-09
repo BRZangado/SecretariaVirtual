@@ -24,9 +24,6 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{% url 'accounts:closedsolicitations' %}"><i class="fas fa-sign-out-alt"></i> Requerimentos Encerrados</a>
-                        </li>
-                        <li>
                             <a href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
                         </li>
                     </ul>
@@ -53,7 +50,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             {% for solicitation in solicitations %}
-                                {% if solicitation.status == "Em análise pela Secretaria" %}
+                                {% if solicitation.status == "Em análise pelo CAA" %}
                                     <div class="alert alert-info">
                                     Nº {{solicitation.order}}
                                     <br>
@@ -63,7 +60,7 @@
                                     <br>
                                     Solicitação: {{solicitation.solicitation}}
                                     <br>
-                                    <a href="{% url 'accounts:secsolicitationanalysis' sol_id=solicitation.pk %}" class="alert-link">Analisar</a>.
+                                    <a href="{% url 'accounts:caasolicitationanalysis' sol_id=solicitation.pk %}" class="alert-link">Analisar</a>.
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -87,26 +84,7 @@
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Em análise pela CAA
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            {% for solicitation in solicitations %}
-                                {% if solicitation.status == "Em análise pelo CAA" %}
-                                    <div class="alert alert-info">
-                                    Nº {{solicitation.order}}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                        <!-- .panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Em análise pela coordenação
+                            Em análise pela Coordenação
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -122,6 +100,7 @@
                     </div>
                     <!-- /.panel -->
                 </div>
+
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -131,6 +110,25 @@
                         <div class="panel-body">
                             {% for solicitation in solicitations %}
                                 {% if solicitation.status == "Em análise pela Diretoria" %}
+                                    <div class="alert alert-info">
+                                    Nº {{solicitation.order}}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Em análise pela Secretaria
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            {% for solicitation in solicitations %}
+                                {% if solicitation.status == "Em análise pela Secretaria" %}
                                     <div class="alert alert-info">
                                     Nº {{solicitation.order}}
                                     </div>

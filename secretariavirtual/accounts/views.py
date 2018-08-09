@@ -478,6 +478,64 @@ class AnalysisNapesView(FormView, LoginRequiredMixin):
 		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
 		return solicitation
 
+class HomeCAAView(TemplateView, LoginRequiredMixin):
+
+	template_name = 'homecaa.html'
+
+	def get_context_data(self, **kwargs):
+
+		context = super(HomeCAAView, self).get_context_data(**kwargs)
+		solicitations = Solicitation.objects.all()
+
+		context['solicitations'] = solicitations
+
+		return context
+
+
+class AnalysisCAAView(FormView, LoginRequiredMixin):
+	
+	template_name = 'caa_analysis.html'
+	form_class = GenericFeedbackForm
+
+	def form_valid(self, form):
+
+		solicitation = self.get_solicitation()
+
+		for feedback in solicitation.feedbacks.all():
+			if feedback.feedbacker.usuario.is_napes:
+				solicitation.feedbacks.remove(feedback)
+				feedback.delete()
+
+		feedback_from_form = form.cleaned_data['feedback']
+
+		new_feedback = Feedback(
+			feedbacker=self.request.user,
+			feedback=feedback_from_form
+		)
+
+		new_feedback.save()
+
+		solicitation.feedbacks.add(new_feedback)
+		solicitation.save()
+
+		solicitation.status = status[1]
+		solicitation.save()
+
+		return HttpResponseRedirect(reverse('accounts:homecaa'))
+
+	def get_context_data(self, **kwargs):
+
+		context = super(AnalysisCAAView, self).get_context_data(**kwargs)
+		solicitation = self.get_solicitation()
+		context['solicitation'] = solicitation
+
+		return context
+
+	def get_solicitation(self):
+
+		solicitation = Solicitation.objects.get(pk=self.kwargs.get('sol_id'))
+		return solicitation
+
 
 def change_status(request, sol_id, status_to):
 

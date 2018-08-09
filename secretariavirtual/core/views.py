@@ -48,6 +48,8 @@ class LoginView(FormView):
                 return HttpResponseRedirect(reverse('accounts:homefinance'))
             elif user.usuario.is_napes:
                 return HttpResponseRedirect(reverse('accounts:homenapes'))
+            elif user.usuario.is_caa:
+                return HttpResponseRedirect(reverse('accounts:homecaa'))
         else:
             return HttpResponseRedirect(reverse('accounts:invalid'))
 

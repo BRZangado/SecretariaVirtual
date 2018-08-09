@@ -6,7 +6,8 @@ from .views import (
 	AnalysisCoordinationView, HomeCoordinationView, HomeLibraryView,
 	AnalysisLibraryView, HomeFinanceView, AnalysisFinanceView,
 	HomeNapesView, AnalysisNapesView, StudentTrackSolicitationsView,
-	ClosedSolicitationsView, ClosedSolicitationsByYearView, write_solicitation_to_docx
+	ClosedSolicitationsView, ClosedSolicitationsByYearView, write_solicitation_to_docx,
+	HomeCAAView, AnalysisCAAView
 )
 
 app_name = 'accounts'
@@ -53,6 +54,10 @@ urlpatterns = [
 		HomeNapesView.as_view(),
 		name='homenapes'
 	),
+	path('home/caa/',
+		HomeCAAView.as_view(),
+		name='homecaa'
+	),
 	path('home/logout/',
 		logout,
 		name='logout'
@@ -84,6 +89,10 @@ urlpatterns = [
 	path('home/napes/analisarsolicitacao/<int:sol_id>',
 		AnalysisNapesView.as_view(),
 		name='napessolicitationanalysis'
+	),
+	path('home/caa/analisarsolicitacao/<int:sol_id>',
+		AnalysisCAAView.as_view(),
+		name='caasolicitationanalysis'
 	),
 	path('home/secretaria/trocar-status/<int:sol_id>/<int:status_to>',
 		change_status,

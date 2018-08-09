@@ -18,6 +18,7 @@ class WriteAndDownload(object):
 		feedback_coord = Feedback()
 		feedback_napes = Feedback()
 		feedback_dir = Feedback()
+		feedback_caa = Feedback()
 		
 		for feedback in self.solicitation.feedbacks.all():
 
@@ -38,6 +39,9 @@ class WriteAndDownload(object):
 
 			elif feedback.feedbacker.usuario.is_director:
 				feedback_dir = feedback
+
+			elif feedback.feedbacker.usuario.is_caa:
+				feedback_caa = feedback
 
 		document = MailMerge(self.template)
 
@@ -62,7 +66,8 @@ class WriteAndDownload(object):
 			dir_feedback=feedback_dir.feedback,
 			napes_feedback=feedback_napes.feedback,
 			lib_feedback=feedback_lib.feedback,
-			finance_feedback=feedback_fin.feedback
+			finance_feedback=feedback_fin.feedback,
+			caa_feedback=feedback_caa.feedback
 	    )
 
 		document.write("secretariavirtual/common-static/static/temporary-documents/"+self.document_name)

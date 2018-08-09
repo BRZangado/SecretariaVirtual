@@ -525,18 +525,21 @@ def write_solicitation_to_docx(request, sol_id):
 		elif feedback.feedbacker.usuario.is_director:
 			feedback_dir = feedback
 
-	template = "secretariavirtual/common-static/static/word-templates/modelo-requerimento.docx"
+	template = "secretariavirtual/common-static/static/word-templates/modelo-requerimento-novo.docx"
 	document = MailMerge(template)
 
 	print(document.get_merge_fields())
 
 	document.merge(
+		order=solicitation.order,
+		date=str(solicitation.created_at.day)+"/"+str(solicitation.created_at.month)+"/"+str(solicitation.created_at.year),
 		name=solicitation.student.usuario.name,
 		code=solicitation.code,
 		email=solicitation.email,
 		course=("Tecnólogo em gestão pública"),
 		phone1=solicitation.phone1,
 		phone2=solicitation.phone2,
+		semester=solicitation.student_semester,
 		classs=solicitation.classs,
 		student_academic_situation=solicitation.student_academic_situation,
 		solicitation=solicitation.solicitation,
@@ -546,6 +549,7 @@ def write_solicitation_to_docx(request, sol_id):
 		dir_feedback=feedback_dir.feedback,
 		napes_feedback=feedback_napes.feedback,
 		lib_feedback=feedback_lib.feedback,
+		finance_feedback=feedback_fin.feedback
     )
 
 	document_name = 'requerimento-numero-'+solicitation.order+'.docx'

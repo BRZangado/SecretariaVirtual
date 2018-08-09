@@ -6,12 +6,13 @@ class WriteAndDownload(object):
 
 	def __init__(self, solicitation):
 
-		self.template = "secretariavirtual/common-static/static/word-templates/modelo-requerimento-novo.docx"
+		self.template = "secretariavirtual/common-static/templates/word-templates/modelo-requerimento-novo.docx"
 		self.solicitation = solicitation
 		self.document_name = 'requerimento-numero-'+solicitation.order+'.docx'
 
 	def write_file(self):
 
+		feedbacks = []
 		feedback_secretary = Feedback()
 		feedback_lib = Feedback()
 		feedback_fin = Feedback()
@@ -70,11 +71,11 @@ class WriteAndDownload(object):
 			caa_feedback=feedback_caa.feedback
 	    )
 
-		document.write("secretariavirtual/common-static/static/temporary-documents/"+self.document_name)
+		document.write("secretariavirtual/common-static/static/solicitations/"+self.document_name)
 
 	def download(self):
 
-		with open("secretariavirtual/common-static/static/temporary-documents/"+self.document_name, 'rb') as fh:
+		with open("secretariavirtual/common-static/static/solicitations/"+self.document_name, 'rb') as fh:
 			response = HttpResponse(fh.read(), content_type="application/docx")
 			response['Content-Disposition'] = 'inline; filename=' + self.document_name
 

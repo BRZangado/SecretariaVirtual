@@ -60,6 +60,14 @@
                                <br>
                                <br>
                                <div class="panel panel-default">
+                                {% for feedback in solicitation.feedbacks.all %}
+                                        {% if feedback.feedbacker.usuario.is_caa %}
+                                            <div class="panel-body">
+                                                <b>Parecer da CAA:</b> <br>
+                                                {{feedback}}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
                                     {% for feedback in solicitation.feedbacks.all %}
                                         {% if feedback.feedbacker.usuario.is_secretary %}
                                             <div class="panel-body">

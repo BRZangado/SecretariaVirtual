@@ -17,8 +17,8 @@ from .forms import (
 )
 from .models import Solicitation, Feedback
 from .status import status
-from mailmerge import MailMerge
 from datetime import date
+from .writefile import WriteAndDownload
 from secretariavirtual.settings import STATICFILES_DIRS
 # Get the custom user from settings
 User = get_user_model()
@@ -497,68 +497,9 @@ def logout(request):
 def write_solicitation_to_docx(request, sol_id):
 
 	solicitation = Solicitation.objects.get(pk=sol_id)
+	new_write = WriteAndDownload(solicitation)
 
-	feedback_secretary = Feedback()
-	feedback_dir = Feedback()
-	feedback_coord = Feedback()
-	feedback_lib = Feedback()
-	feedback_napes = Feedback()
-	feedback_fin = Feedback()
-
-	for feedback in solicitation.feedbacks.all():
-
-		if feedback.feedbacker.usuario.is_secretary:
-			feedback_secretary = feedback
-
-		elif feedback.feedbacker.usuario.is_library:
-			feedback_lib = feedback
-
-		elif feedback.feedbacker.usuario.is_finance:
-			feedback_fin = feedback
-
-		elif feedback.feedbacker.usuario.is_coordination:
-			feedback_coord = feedback
-
-		elif feedback.feedbacker.usuario.is_napes:
-			feedback_napes = feedback
-
-		elif feedback.feedbacker.usuario.is_director:
-			feedback_dir = feedback
-
-	template = "secretariavirtual/common-static/static/word-templates/modelo-requerimento-novo.docx"
-	document = MailMerge(template)
-
-	print(document.get_merge_fields())
-
-	document.merge(
-		order=solicitation.order,
-		date=str(solicitation.created_at.day)+"/"+str(solicitation.created_at.month)+"/"+str(solicitation.created_at.year),
-		name=solicitation.student.usuario.name,
-		code=solicitation.code,
-		email=solicitation.email,
-		course=("Tecnólogo em gestão pública"),
-		phone1=solicitation.phone1,
-		phone2=solicitation.phone2,
-		semester=solicitation.student_semester,
-		classs=solicitation.classs,
-		student_academic_situation=solicitation.student_academic_situation,
-		solicitation=solicitation.solicitation,
-		reason=solicitation.reason,
-		secretary_feedback=feedback_secretary.feedback,
-		coord_feedback=feedback_coord.feedback,
-		dir_feedback=feedback_dir.feedback,
-		napes_feedback=feedback_napes.feedback,
-		lib_feedback=feedback_lib.feedback,
-		finance_feedback=feedback_fin.feedback
-    )
-
-	document_name = 'requerimento-numero-'+solicitation.order+'.docx'
-	document.write("secretariavirtual/common-static/static/temporary-documents/"+document_name)
-
-	file_path = "secretariavirtual/common-static/static/temporary-documents/"
-
-	with open("secretariavirtual/common-static/static/temporary-documents/"+document_name, 'rb') as fh:
-		response = HttpResponse(fh.read(), content_type="application/docx")
-		response['Content-Disposition'] = 'inline; filename=' + document_name
+	new_write.write_file()
+	response = new_write.download()
 
 	return response

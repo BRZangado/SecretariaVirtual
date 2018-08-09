@@ -12,6 +12,7 @@ class Feedback(models.Model):
 		('Parecer'),
 		help_text=("Parecer de certo funcionário"),
 		max_length=500,
+		default=("Parecer não informado")
 	)
 
 	created_at = models.DateTimeField(

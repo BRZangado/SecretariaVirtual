@@ -52,7 +52,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <form role="form" method="post" enctype="multipart/form-data">{% csrf_token %}
+                                <form id="solicitationform" role="form" method="post" enctype="multipart/form-data">{% csrf_token %}
                                     <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>{% render_field form.email.label %}</label>
@@ -71,16 +71,6 @@
                                                 {% render_field form.phone_two class="form-control" type="text" placeholder=form.phone_two.help_text %}
                                             </div>
                                             <div class="form-group">
-                                                <label>Solicitação:</label>
-                                                {% for radio in form.solicitations %}
-                                                    <div class="radio">
-                                                        <label>
-                                                            {{ radio.tag }}{{ radio.choice_label }}
-                                                        </label>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                            <div class="form-group">
                                                 <label>{% render_field form.course.label %}</label>
                                                 {% render_field form.course class="form-control" type="text" placeholder=form.course.help_text %}
                                             </div>
@@ -93,12 +83,52 @@
                                                 {% render_field form.classs class="form-control" type="text" placeholder=form.classs.help_text %}
                                             </div>
                                             <div class="form-group">
+                                                <label>Solicitação:</label>
+                                                {% for radio in form.solicitations %}
+                                                    <div class="radio">
+                                                        <label>
+                                                            {{ radio.tag }}{{ radio.choice_label }}
+                                                        </label>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="form-group">
                                                 <label>{% render_field form.justification.label %}</label>
                                                 {% render_field form.justification class="form-control" placeholder=form.justification.help_text %}
                                             </div>
-                                            <div class="form-group">
-                                                <label>Anexar Documento</label>
-                                                {% render_field form.attachment %}
+                                            <div class="attachments">
+                                                <div class="form-group">
+                                                    <label>Anexar RG</label>
+                                                    {% render_field form.attachment_rg %}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anexar CPF</label>
+                                                    {% render_field form.attachment_cpf %}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anexar Título de Eleitor</label>
+                                                    {% render_field form.attachment_voters_title %}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anexar Comprovante de Quitação Eleitoral</label>
+                                                    {% render_field form.attachment_proof_electoral_discharge %}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anexar Título de Reservista</label>
+                                                    {% render_field form.attachment_reservist %}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anexar Certidão de Casamento ou Nascimento</label>
+                                                    {% render_field form.attachment_birth_marriage_certificate %}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anexar Certificado de Conclusão do Ensino Médio</label>
+                                                    {% render_field form.attachment_highschool_certificate %}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anexar Histórico de Conclusão do Ensino Médio</label>
+                                                    {% render_field form.attachment_school_conclusion_historic %}
+                                                </div>
                                             </div>
                                             <button type="submit" class="btn btn-default">Enviar Solicitação</button>
                                             <button type="reset" class="btn btn-default">Resetar</button>
@@ -124,4 +154,29 @@
 
     </div>
     <!-- /#wrapper -->
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $(".attachments").hide();
+    });
+
+    $("#solicitationform").change(function () {
+      
+        if(document.getElementById('id_solicitations_18').checked) {
+            $(".attachments").show();
+        }
+
+        else{
+            $(".attachments").hide();
+        }
+
+
+    });
+
+</script>
+
 {% endblock %}

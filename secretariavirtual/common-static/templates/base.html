@@ -36,8 +36,6 @@
 
 <body>
 
-    {% block content %}{% endblock %}
-
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 
@@ -49,6 +47,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'dist/js/sb-admin-2.js' %}"></script>
+
+    {% block content %}{% endblock %}
+
+    {% block js %}{% endblock %}
 
 </body>
 

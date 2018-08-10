@@ -132,8 +132,68 @@ class Solicitation(models.Model):
 		max_length=30,
 	)
 
-	attachment = models.FileField(
-		upload_to='anexos/%Y/%m/%d/'
+	attachment_rg = models.FileField(
+		('RG'),
+		help_text=("RG Anexado pelo estudante"),
+		upload_to='anexos/%Y/%m/RG/',
+		blank=True,
+		null=True
+	)
+
+	attachment_voters_title = models.FileField(
+		('Título de Eleitor'),
+		help_text=("Título de Eleitor Anexado pelo estudante"),
+		upload_to='anexos/%Y/%m/Titulo-de-Eleitor/',
+		blank=True,
+		null=True
+	)
+
+	attachment_cpf = models.FileField(
+		('CPF'),
+		help_text=("CPF Anexado pelo estudante"),
+		upload_to='anexos/%Y/%m/CPF/',
+		blank=True,
+		null=True
+	)
+
+	attachment_proof_electoral_discharge = models.FileField(
+		('Comprovante de Quitação Eleitoral'),
+		help_text=("Comprovante de Quitação Eleitoral Anexado pelo estudante"),
+		upload_to='anexos/%Y/%m/comprovante-quitacao-eleitoral/',
+		blank=True,
+		null=True
+	)
+
+	attachment_reservist = models.FileField(
+		('Título de Reservista'),
+		help_text=("Título de Reservista Anexado pelo estudante"),
+		upload_to='anexos/%Y/%m/reservista/',
+		blank=True,
+		null=True
+	)
+
+	attachment_birth_marriage_certificate = models.FileField(
+		('Certidão de casamento/Nascimento'),
+		help_text=("Certidão de casamento/Nascimento Anexado pelo estudante"),
+		upload_to='anexos/%Y/%m/certidao-casamento-nascimento/',
+		blank=True,
+		null=True
+	)
+
+	attachment_highschool_certificate = models.FileField(
+		('Certificado de Conclusão do Ensino Médio'),
+		help_text=("Certificado de Conclusão do Ensino Médio Anexado pelo estudante"),
+		upload_to='anexos/%Y/%m/school-certificate/',
+		blank=True,
+		null=True
+	)
+
+	attachment_school_conclusion_historic = models.FileField(
+		('Histórico de Conclusão do Ensino Médio'),
+		help_text=("Histórico de Conclusão do Ensino Médio Anexado pelo estudante"),
+		upload_to='anexos/%Y/%m/school-historic/',
+		blank=True,
+		null=True
 	)
 
 	feedbacks = models.ManyToManyField(

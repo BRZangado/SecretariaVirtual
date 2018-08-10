@@ -40,7 +40,15 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 		phone_two = form.cleaned_data['phone_two']
 		justification = form.cleaned_data['justification']
 		solicitation = form.cleaned_data['solicitations']
-		attachment = form.cleaned_data['attachment']
+
+		attachment_rg = form.cleaned_data['attachment_rg']
+		attachment_voters_title = form.cleaned_data['attachment_voters_title']
+		attachment_cpf = form.cleaned_data['attachment_cpf']
+		attachment_proof_electoral_discharge = form.cleaned_data['attachment_proof_electoral_discharge']
+		attachment_reservist = form.cleaned_data['attachment_reservist']
+		attachment_birth_marriage_certificate = form.cleaned_data['attachment_birth_marriage_certificate']
+		attachment_highschool_certificate = form.cleaned_data['attachment_highschool_certificate']
+		attachment_school_conclusion_historic = form.cleaned_data['attachment_school_conclusion_historic']
 
 		new_solicitation = Solicitation(
 			email=email,
@@ -54,7 +62,14 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 			reason=justification,
 			status=status[1],
 			code=code,
-			attachment=attachment
+			attachment_rg=attachment_rg,
+			attachment_voters_title=attachment_voters_title,
+			attachment_cpf=attachment_cpf,
+			attachment_proof_electoral_discharge=attachment_proof_electoral_discharge,
+			attachment_reservist=attachment_reservist,
+			attachment_birth_marriage_certificate=attachment_birth_marriage_certificate,
+			attachment_highschool_certificate=attachment_highschool_certificate,
+			attachment_school_conclusion_historic=attachment_school_conclusion_historic
 		)
 
 		new_solicitation.save()
@@ -568,10 +583,11 @@ def write_solicitation_to_docx(request, sol_id):
 
 	return response
 
-def download_attachment(request, sol_id):
+def download_attachment(request, sol_id, file):
 
 	solicitation = Solicitation.objects.get(pk=sol_id)
-	path_to_file = solicitation.attachment
+	if file == 'rg':
+		path_to_file = solicitation.attachment_rg
 
 	with open("secretariavirtual/common-static/media/"+str(path_to_file), 'rb') as fh:
 		response = HttpResponse(fh.read(), content_type="application/force-download")

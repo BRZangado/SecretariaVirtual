@@ -78,10 +78,46 @@
                             {% endif %}
                         {% endfor %}
                         </div>
-                        <div class="panel-body">
-                            <b>Anexos:</b><br>
-                            <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk %}">Baixar</a>
-                        </div>
+                        {% if solicitation.solicitation == "Solicitação do Diploma" %}
+                            <div class="panel-body">
+                                <b>Anexos:</b><br>
+                            </div>
+                            {% if solicitation.attachment_rg %}
+                                <div class="panel-body">
+                                    <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk file='rg' %}">Baixar RG</a>
+                                </div>
+                            {% endif %}
+                            {% if solicitation.attachment_cpf %}
+                                <div class="panel-body">
+                                    <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk file='rg' %}">Baixar RG</a>
+                                </div>
+                            {% endif %}
+                            {% if solicitation.attachment_proof_electoral_discharge %}
+                                <div class="panel-body">
+                                    <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk file='rg' %}">Baixar RG</a>
+                                </div>
+                            {% endif %}
+                            {% if solicitation.attachment_reservist %}
+                                <div class="panel-body">
+                                    <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk file='rg' %}">Baixar RG</a>
+                                </div>
+                            {% endif %}
+                            {% if solicitation.attachment_birth_marriage_certificate %}
+                                <div class="panel-body">
+                                    <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk file='rg' %}">Baixar RG</a>
+                                </div>
+                            {% endif %}
+                            {% if solicitation.attachment_birth_marriage_certificate %}
+                                <div class="panel-body">
+                                    <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk file='rg' %}">Baixar RG</a>
+                                </div>
+                            {% endif %}
+                            {% if solicitation.attachment_highschool_certificate %}
+                                <div class="panel-body">
+                                    <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk file='rg' %}">Baixar RG</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
                         <!-- .panel-body -->
                     </div>
                     <!-- /.panel -->

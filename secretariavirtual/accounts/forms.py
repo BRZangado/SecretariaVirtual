@@ -17,7 +17,10 @@ CHOICES=[
          ('Revisão de Notas','Revisão de Notas'),
          ('Revisão de Notas','Trancamento de Matrícula***'),
          ('Solicitção de 2ª chamada de prova','Solicitção de 2ª chamada de prova*'),
-         ('Outro','Outro (descrever na justificativa)')
+         ('Outro','Outro (descrever na justificativa)'),
+         ('Declaração de vinculo acadêmico', 'Declaração de vinculo acadêmico'),
+         ('Declaração para aquisição de passe estudantil','Declaração para aquisição de passe estudantil'),
+         ('Solicitação do Diploma','Solicitação do Diploma ( Necessário Anexar Documentos ) ')
 ]
 
 class StudentSolicitationForm(forms.Form):
@@ -69,7 +72,37 @@ class StudentSolicitationForm(forms.Form):
         help_text=("Digite a justificativa da solicitação"),
     )
 
-    attachment = forms.FileField()
+    attachment_rg = forms.FileField(
+        required=False
+    )
+
+    attachment_voters_title = forms.FileField(
+        required=False
+    )
+
+    attachment_cpf = forms.FileField(
+        required=False
+    )
+
+    attachment_proof_electoral_discharge = forms.FileField(
+        required=False
+    )
+
+    attachment_reservist = forms.FileField(
+        required=False
+    )
+
+    attachment_birth_marriage_certificate = forms.FileField(
+        required=False
+    )
+
+    attachment_highschool_certificate = forms.FileField(
+        required=False
+    )
+
+    attachment_school_conclusion_historic = forms.FileField(
+        required=False
+    )
 
 
 class GenericFeedbackForm(forms.Form):

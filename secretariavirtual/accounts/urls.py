@@ -98,7 +98,7 @@ urlpatterns = [
 		change_status,
 		name='changestatus'
 	),
-	path('home/download/<int:sol_id>/',
+	path('home/download/<int:sol_id>/<str:file>',
 		download_attachment,
 		name='downloadattachment'
 	),

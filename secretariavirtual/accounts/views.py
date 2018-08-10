@@ -43,6 +43,9 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 		attachment = form.cleaned_data['attachment']
 
 		new_solicitation = Solicitation(
+			email=email,
+			phone1=phone_one,
+			phone2=phone_two,
 			student=self.request.user,
 			order=str(random.randint(1,101)),
 			student_semester=semester,

@@ -132,6 +132,10 @@ class Solicitation(models.Model):
 		max_length=30,
 	)
 
+	attachment = models.FileField(
+		upload_to='anexos/%Y/%m/%d/'
+	)
+
 	feedbacks = models.ManyToManyField(
 		Feedback,
 		blank=True

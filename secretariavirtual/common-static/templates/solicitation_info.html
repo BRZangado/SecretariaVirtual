@@ -78,6 +78,10 @@
                             {% endif %}
                         {% endfor %}
                         </div>
+                        <div class="panel-body">
+                            <b>Anexos:</b><br>
+                            <a href="{% url 'accounts:downloadattachment' sol_id=solicitation.pk %}">Baixar</a>
+                        </div>
                         <!-- .panel-body -->
                     </div>
                     <!-- /.panel -->

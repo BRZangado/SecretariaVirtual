@@ -7,7 +7,7 @@ from .views import (
 	AnalysisLibraryView, HomeFinanceView, AnalysisFinanceView,
 	HomeNapesView, AnalysisNapesView, StudentTrackSolicitationsView,
 	ClosedSolicitationsView, ClosedSolicitationsByYearView, write_solicitation_to_docx,
-	HomeCAAView, AnalysisCAAView
+	HomeCAAView, AnalysisCAAView, download_attachment
 )
 
 app_name = 'accounts'
@@ -97,6 +97,10 @@ urlpatterns = [
 	path('home/secretaria/trocar-status/<int:sol_id>/<int:status_to>',
 		change_status,
 		name='changestatus'
+	),
+	path('home/download/<int:sol_id>/',
+		download_attachment,
+		name='downloadattachment'
 	),
 
 ]

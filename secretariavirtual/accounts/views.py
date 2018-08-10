@@ -10,6 +10,7 @@ from django.contrib.auth import logout as django_logout
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.views.generic import TemplateView, FormView
+from django.core.files.storage import FileSystemStorage
 import random
 
 from .forms import (
@@ -39,6 +40,7 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 		phone_two = form.cleaned_data['phone_two']
 		justification = form.cleaned_data['justification']
 		solicitation = form.cleaned_data['solicitations']
+		attachment = form.cleaned_data['attachment']
 
 		new_solicitation = Solicitation(
 			student=self.request.user,
@@ -48,7 +50,8 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 			solicitation=solicitation,
 			reason=justification,
 			status=status[1],
-			code=code
+			code=code,
+			attachment=attachment
 		)
 
 		new_solicitation.save()
@@ -559,5 +562,16 @@ def write_solicitation_to_docx(request, sol_id):
 
 	new_write.write_file()
 	response = new_write.download()
+
+	return response
+
+def download_attachment(request, sol_id):
+
+	solicitation = Solicitation.objects.get(pk=sol_id)
+	path_to_file = solicitation.attachment
+
+	with open("secretariavirtual/common-static/media/"+str(path_to_file), 'rb') as fh:
+		response = HttpResponse(fh.read(), content_type="application/force-download")
+		response['Content-Disposition'] = 'inline; filename=' + solicitation.attachment.name
 
 	return response

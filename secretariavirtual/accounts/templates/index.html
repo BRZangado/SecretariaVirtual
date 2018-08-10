@@ -52,7 +52,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <form role="form" method="post">{% csrf_token %}
+                                <form role="form" method="post" enctype="multipart/form-data">{% csrf_token %}
                                     <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>{% render_field form.email.label %}</label>
@@ -81,27 +81,27 @@
                                                 {% endfor %}
                                             </div>
                                             <div class="form-group">
+                                                <label>{% render_field form.course.label %}</label>
+                                                {% render_field form.course class="form-control" type="text" placeholder=form.course.help_text %}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{% render_field form.semester.label %}</label>
+                                                {% render_field form.semester class="form-control" type="text" placeholder=form.semester.help_text %}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{% render_field form.classs.label %}</label>
+                                                {% render_field form.classs class="form-control" type="text" placeholder=form.classs.help_text %}
+                                            </div>
+                                            <div class="form-group">
                                                 <label>{% render_field form.justification.label %}</label>
                                                 {% render_field form.justification class="form-control" placeholder=form.justification.help_text %}
                                             </div>
+                                            <div class="form-group">
+                                                <label>Anexar Documento</label>
+                                                {% render_field form.attachment %}
+                                            </div>
                                             <button type="submit" class="btn btn-default">Enviar Solicitação</button>
                                             <button type="reset" class="btn btn-default">Resetar</button>
-                                        
-                                    </div>
-                                    <!-- /.col-lg-6 (nested) -->
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>{% render_field form.course.label %}</label>
-                                            {% render_field form.course class="form-control" type="text" placeholder=form.course.help_text %}
-                                        </div>
-                                        <div class="form-group">
-                                            <label>{% render_field form.semester.label %}</label>
-                                            {% render_field form.semester class="form-control" type="text" placeholder=form.semester.help_text %}
-                                        </div>
-                                        <div class="form-group">
-                                            <label>{% render_field form.classs.label %}</label>
-                                            {% render_field form.classs class="form-control" type="text" placeholder=form.classs.help_text %}
-                                        </div>
                                     </div>
                                 </form>
                                 <!-- /.col-lg-6 (nested) -->

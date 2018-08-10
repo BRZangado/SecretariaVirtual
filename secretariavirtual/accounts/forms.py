@@ -69,6 +69,8 @@ class StudentSolicitationForm(forms.Form):
         help_text=("Digite a justificativa da solicitação"),
     )
 
+    attachment = forms.FileField()
+
 
 class GenericFeedbackForm(forms.Form):
 

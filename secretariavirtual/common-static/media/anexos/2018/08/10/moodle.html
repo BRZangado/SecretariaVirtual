@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br"> 
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+
+<html class="no-js"> <!--<![endif]-->
+    <head>
+
+        <title>Faculdade Anasps</title>
+
+        <!-- meta -->
+        <meta charset="utf-8">
+        <meta name="author" content="Filipi Machado">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Educação Presencial e a Distância - Faculdade Anasps">
+
+        <!-- Banner Slide--> 
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/gallery.prefixed.css">
+        <link rel="stylesheet" href="css/gallery.theme.css">
+
+        
+        <!-- stylesheets -->
+        <link rel="shortcut icon" href="imagens/favicon.png">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.css">
+        <link rel="stylesheet" href="assets/css/owl.theme.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+
+        <!-- scripts -->
+        <script type="text/javascript" src="assets/js/modernizr.custom.97074.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="home-page">
+
+            <div id="menu_include"></div>
+
+            <div class="main-content">
+
+                <!-- begin our story section -->
+
+			<header id="header1" class="header-wrapper home-parallax home-fade">
+                <div class="header-overlay"></div>
+                <div class="header-wrapper-inner">
+                    <div class="container">
+
+                        <div class="welcome-speech">
+                            <h2>AMBIENTES VIRTUAIS DE APRENDIZAGEM <b>MOODLE</b></h2>
+                            <p>BEM-VINDO AO AMBIENTE VIRTUAL DE APRENDIZAGEM</p>
+                            <a href="http://www.faculdadeanasps.com.br/moodle/login/index.php" class="btn btn-white">
+                                ENSINO PRESENCIAL 
+                            </a>
+                            <a href="https://institutoanasps.com.br/moodle/login/index.php" class="btn btn-white">
+                                ENSINO À DISTÂNCIA 
+                            </a>
+                        </div><!-- /.intro -->
+                        
+                    </div><!-- /.container -->
+
+                </div><!-- /.header-wrapper-inner -->
+            </header>
+            <div id="footer_include"></div>
+            
+        </div> <!-- end of /#home-page -->
+
+        <!--  Necessary scripts  -->
+
+        <script type="text/javascript" src="assets/js/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="assets/js/owl.carousel.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.hoverdir.js"></script>
+
+
+        <!-- script for portfolio section using hoverdirection -->
+        <script type="text/javascript">
+            $(function() {
+
+                $('.portfolio-item > .item-image').each( function() { $(this).hoverdir({
+                    hoverDelay : 75
+                }); } );
+
+            });
+        </script>
+
+
+        <!-- script for twitter-feed using owl carousel-->
+        <script type="text/javascript">
+            $(document).ready(function() {
+ 
+                $("#twit").owlCarousel({
+                 
+                    navigation : true, // Show next and prev buttons
+                    slideSpeed : 100,
+                    paginationSpeed : 400,
+                    navigationText : false,
+                    singleItem: true,
+                    autoPlay: true,
+                    pagination: false
+                });
+
+                $("#menu_include").load("menu.html");
+                $("#footer_include").load("footer.html");
+ 
+            });
+        </script>
+
+
+        <!-- script for testimonial section using owl carousel -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+ 
+                $("#client-speech").owlCarousel({
+                 
+                    autoPlay: 5000, //Set AutoPlay to 3 seconds
+                    stopOnHover: true,
+                    singleItem:true
+                });
+ 
+            });
+        </script>
+
+
+    </body>
+</html>

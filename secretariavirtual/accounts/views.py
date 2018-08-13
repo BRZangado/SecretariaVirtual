@@ -25,11 +25,19 @@ from secretariavirtual.settings import STATICFILES_DIRS
 User = get_user_model()
 
 class HomeAlunoView(FormView, LoginRequiredMixin):
+
+	'''
+	Main Student View.
+	'''
 	
 	template_name = 'index.html'
 	form_class = StudentSolicitationForm
 
 	def form_valid(self, form):
+
+		'''
+		Receive form already validated
+		'''
 
 		email = form.cleaned_data['email']
 		code = form.cleaned_data['code']
@@ -41,6 +49,10 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 		justification = form.cleaned_data['justification']
 		solicitation = form.cleaned_data['solicitations']
 
+		'''
+		Get attachments if uploaded
+		'''
+
 		attachment_rg = form.cleaned_data['attachment_rg']
 		attachment_voters_title = form.cleaned_data['attachment_voters_title']
 		attachment_cpf = form.cleaned_data['attachment_cpf']
@@ -49,6 +61,10 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 		attachment_birth_marriage_certificate = form.cleaned_data['attachment_birth_marriage_certificate']
 		attachment_highschool_certificate = form.cleaned_data['attachment_highschool_certificate']
 		attachment_school_conclusion_historic = form.cleaned_data['attachment_school_conclusion_historic']
+
+		'''
+		Create new solicitation
+		'''
 
 		new_solicitation = Solicitation(
 			email=email,
@@ -79,6 +95,10 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 
 class StudentTrackSolicitationsView(TemplateView, LoginRequiredMixin):
 
+	'''
+	View for students to track submitted solicitations
+	'''
+
 	template_name = 'mysolicitations.html'
 
 	def get_context_data(self, **kwargs):
@@ -93,6 +113,10 @@ class StudentTrackSolicitationsView(TemplateView, LoginRequiredMixin):
 		return context
 
 class HomeSecretaryView(TemplateView, LoginRequiredMixin):
+
+	'''
+	Home View for Secretary. Lists solicitations.
+	'''
 	
 	template_name = 'homesec.html'
 
@@ -107,6 +131,11 @@ class HomeSecretaryView(TemplateView, LoginRequiredMixin):
 
 
 class AnalysisSecretaryView(FormView, LoginRequiredMixin):
+
+	'''
+	View for Secretary fill his/her solicitation feedbac
+	and student academic situation
+	'''
 	
 	template_name = 'secanalysis.html'
 	form_class = SecretarySolicitationForm
@@ -153,6 +182,10 @@ class AnalysisSecretaryView(FormView, LoginRequiredMixin):
 
 
 class ClosedSolicitationsView(TemplateView, LoginRequiredMixin):
+
+	'''
+	View to list closed solicitations by year 
+	'''
 	
 	template_name = 'closedsolicitations.html'
 
@@ -181,6 +214,10 @@ class ClosedSolicitationsView(TemplateView, LoginRequiredMixin):
 
 class ClosedSolicitationsByYearView(TemplateView, LoginRequiredMixin):
 
+	'''
+	View for Secretary manage the chosen closed solicitation
+	'''
+
 	template_name = 'closed_solicitations_by_year.html'
 
 	def get_context_data(self, **kwargs):
@@ -207,6 +244,10 @@ class ClosedSolicitationsByYearView(TemplateView, LoginRequiredMixin):
 
 class HomeDirectorView(TemplateView, LoginRequiredMixin):
 
+	'''
+	Home view for Director
+	'''
+
 	template_name = 'homedir.html'
 
 	def get_context_data(self, **kwargs):
@@ -220,6 +261,10 @@ class HomeDirectorView(TemplateView, LoginRequiredMixin):
 
 
 class AnalysisDirectorView(FormView, LoginRequiredMixin):
+
+	'''
+	View for Director fill his/her solicitation feedback
+	'''
 	
 	template_name = 'directoranalysis.html'
 	form_class = GenericFeedbackForm
@@ -266,6 +311,10 @@ class AnalysisDirectorView(FormView, LoginRequiredMixin):
 
 class HomeCoordinationView(TemplateView, LoginRequiredMixin):
 
+	'''
+	Home View for coordination
+	'''
+
 	template_name = 'homecoord.html'
 
 	def get_context_data(self, **kwargs):
@@ -279,6 +328,10 @@ class HomeCoordinationView(TemplateView, LoginRequiredMixin):
 
 
 class AnalysisCoordinationView(FormView, LoginRequiredMixin):
+
+	'''
+	View for coordinator fill his/her feedback
+	'''
 	
 	template_name = 'coordinationanalysis.html'
 	form_class = GenericFeedbackForm

@@ -20,7 +20,7 @@ CHOICES=[
          ('Outro','Outro (descrever na justificativa)'),
          ('Declaração de vinculo acadêmico', 'Declaração de vinculo acadêmico'),
          ('Declaração para aquisição de passe estudantil','Declaração para aquisição de passe estudantil'),
-         ('Solicitação do Diploma','Solicitação do Diploma ( Necessário Anexar Documentos ) ')
+         ('Solicitação do Diploma','Solicitação do Diploma (anexar documentação) ')
 ]
 
 class StudentSolicitationForm(forms.Form):

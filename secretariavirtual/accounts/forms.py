@@ -3,7 +3,8 @@ from django import forms
 CHOICES=[
 
         ('Aluno Especial','Aluno Especial'),
-        ('Aproveitamento de Estudos','Aproveitamento de Estudos (anexar documentação)'),
+        ('Aproveitamento de Estudos (Ingresso por Transferência)','Aproveitamento de Estudos (Ingresso por Transferência) (anexar documentação)'),
+        ('Aproveitamento de Estudos (Ingresso por Segunda Graduação)','Aproveitamento de Estudos (Ingresso por Segunda Graduação) (anexar documentação)'),
         ('Cancelamento Matrícula','Cancelamento Matrícula***'),
          ('Colação de Grau Coletiva','Colação de Grau Coletiva**'),
          ('Colação de Grau Especial','Colação de Grau Especial**'),
@@ -100,7 +101,19 @@ class StudentSolicitationForm(forms.Form):
         required=False
     )
 
-    attachment_school_conclusion_historic = forms.FileField(
+    attachment_school_historic = forms.FileField(
+        required=False
+    )
+
+    attachment_academic_bond_certificate = forms.FileField(
+        required=False
+    )
+
+    attachment_discipline_menu = forms.FileField(
+        required=False
+    )
+
+    attachment_degree = forms.FileField(
         required=False
     )
 

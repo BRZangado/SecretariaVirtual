@@ -18,6 +18,7 @@ from .forms import (
 )
 from .models import Solicitation, Feedback
 from .status import status
+import datetime
 from datetime import date
 from .writefile import WriteAndDownload
 from secretariavirtual.settings import STATICFILES_DIRS
@@ -49,6 +50,14 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 		justification = form.cleaned_data['justification']
 		solicitation = form.cleaned_data['solicitations']
 
+		now = datetime.datetime.now()
+		if Solicitation.objects.count() < 100:
+			prefix = "00"+str(Solicitation.objects.count())
+		else:
+			prefix = str(Solicitation.objects.count())
+
+		solicitation_order = str(prefix)+"/"+str(now.year)
+
 		'''
 		Get attachments if uploaded
 		'''
@@ -60,7 +69,10 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 		attachment_reservist = form.cleaned_data['attachment_reservist']
 		attachment_birth_marriage_certificate = form.cleaned_data['attachment_birth_marriage_certificate']
 		attachment_highschool_certificate = form.cleaned_data['attachment_highschool_certificate']
-		attachment_school_conclusion_historic = form.cleaned_data['attachment_school_conclusion_historic']
+		attachment_school_historic = form.cleaned_data['attachment_school_historic']
+		attachment_academic_bond_certificate = form.cleaned_data['attachment_academic_bond_certificate']
+		attachment_discipline_menu = form.cleaned_data['attachment_discipline_menu']
+		attachment_degree = form.cleaned_data['attachment_degree']
 
 		'''
 		Create new solicitation
@@ -71,7 +83,7 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 			phone1=phone_one,
 			phone2=phone_two,
 			student=self.request.user,
-			order=str(random.randint(1,101)),
+			order=solicitation_order,
 			student_semester=semester,
 			classs=classs,
 			solicitation=solicitation,
@@ -85,7 +97,10 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 			attachment_reservist=attachment_reservist,
 			attachment_birth_marriage_certificate=attachment_birth_marriage_certificate,
 			attachment_highschool_certificate=attachment_highschool_certificate,
-			attachment_school_conclusion_historic=attachment_school_conclusion_historic
+			attachment_school_historic=attachment_school_historic,
+			attachment_academic_bond_certificate=attachment_academic_bond_certificate,
+			attachment_discipline_menu=attachment_discipline_menu,
+			attachment_degree=attachment_degree,
 		)
 
 		new_solicitation.save()

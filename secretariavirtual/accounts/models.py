@@ -188,10 +188,34 @@ class Solicitation(models.Model):
 		null=True
 	)
 
-	attachment_school_conclusion_historic = models.FileField(
-		('Histórico de Conclusão do Ensino Médio'),
-		help_text=("Histórico de Conclusão do Ensino Médio Anexado pelo estudante"),
+	attachment_school_historic = models.FileField(
+		('Histórico Escolar'),
+		help_text=("Histórico Escolar Anexado pelo estudante"),
 		upload_to='anexos/%Y/%m/school-historic/',
+		blank=True,
+		null=True
+	)
+
+	attachment_academic_bond_certificate = models.FileField(
+		('Declaração de Vínculo Acadêmico'),
+		help_text=("Declaração de Vínculo Acadêmico"),
+		upload_to='anexos/%Y/%m/academic-bond-certificate/',
+		blank=True,
+		null=True
+	)
+
+	attachment_discipline_menu = models.FileField(
+		('Ementas das disciplinas'),
+		help_text=("Ementas das disciplinas cursadas na IES de origem"),
+		upload_to='anexos/%Y/%m/discipline-menus/',
+		blank=True,
+		null=True
+	)
+
+	attachment_degree = models.FileField(
+		('Diploma'),
+		help_text=("Diploma da graduação"),
+		upload_to='anexos/%Y/%m/degrees/',
 		blank=True,
 		null=True
 	)

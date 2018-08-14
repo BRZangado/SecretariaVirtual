@@ -3,8 +3,6 @@ Django-based file and protocols transfer system across multiple college staff an
 
 Sistema baseado em Django de tranferência de arquivos e solicitações entre vários estudantes e funcionários da Faculdade.
 
-# Documento de visão do software
-
 ## Escopo
 
 * O objetivo desse projeto é suprir a demanda de requisições e solicitações acadêmicas de forma totalmente virtual,
@@ -29,7 +27,7 @@ O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer,
 
 ## Backlog do produto
 
-### Requisitos Funcionais (Em formato US)
+### User Storys
 
 * Eu como aluno, quero poder criar uma solicitação acadêmica de múltiplos fatores em ambiente virtual
 * Eu como aluno, quero poder acompanhar o status da minha solicitação.

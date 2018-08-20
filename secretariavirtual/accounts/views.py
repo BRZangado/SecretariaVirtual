@@ -654,11 +654,40 @@ def write_solicitation_to_docx(request, sol_id):
 def download_attachment(request, sol_id, file):
 
 	solicitation = Solicitation.objects.get(pk=sol_id)
+
 	if file == 'rg':
 		path_to_file = solicitation.attachment_rg
+		name = solicitation.attachment_rg.name
+	elif file == 'school_historic':
+		path_to_file = solicitation.attachment_school_historic
+		name = solicitation.attachment_school_historic.name
+	elif file == 'academic_bond_certificate':
+		path_to_file = solicitation.attachment_academic_bond_certificate
+		name = solicitation.attachment_academic_bond_certificate.name
+	elif file == 'discipline_menu':
+		path_to_file = solicitation.attachment_discipline_menu
+		name = solicitation.attachment_discipline_menu.name
+	elif file == 'highschool_certificate':
+		path_to_file = solicitation.attachment_highschool_certificate
+		name = solicitation.attachment_highschool_certificate.name
+	elif file == 'birth_marriage_certificate':
+		path_to_file = solicitation.attachment_birth_marriage_certificate
+		name = solicitation.attachment_birth_marriage_certificate.name
+	elif file == 'degree':
+		path_to_file = solicitation.attachment_degree
+		name = solicitation.attachment_degree.name
+	elif file == 'reservist':
+		path_to_file = solicitation.attachment_reservist
+		name = solicitation.attachment_reservist.name
+	elif file == 'proof_electoral_discharge':
+		path_to_file = solicitation.attachment_proof_electoral_discharge
+		name = solicitation.attachment_proof_electoral_discharge.name
+	elif file == 'cpf':
+		path_to_file = solicitation.attachment_cpf
+		name = solicitation.attachment_cpf.name
 
 	with open("secretariavirtual/common-static/media/"+str(path_to_file), 'rb') as fh:
 		response = HttpResponse(fh.read(), content_type="application/force-download")
-		response['Content-Disposition'] = 'inline; filename=' + solicitation.attachment.name
+		response['Content-Disposition'] = 'inline; filename=' + name
 
 	return response

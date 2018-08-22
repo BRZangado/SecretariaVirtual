@@ -44,12 +44,13 @@ O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer,
 * O software deve ser responsivo, para se adaptar a diferentes tipos de tela
 * O software deve ter um sistema de autenticação seguro
 
-### Recursos Humanos
+## Projeto com visão de produto Produto
 
-|Profissional|Valor/Hora|Tempo De Desenvolvimento|Total
-|----|------|--------|------|
-|Engenheiro de Software Júnior|R$20,00|3 Semanas(25 horas)|R$1500
+### Análise de custo do projeto
 
+|Profissional|Tipo da Empresa|Valor/Hora|Tempo De Desenvolvimento|Total
+|----|------|------|--------|------|
+|Engenheiro de Software Júnior|Grande Porte|R$33,00|3 Semanas(25 horas)|R$2475
 
 ## Arquitetura (v0.1)
 

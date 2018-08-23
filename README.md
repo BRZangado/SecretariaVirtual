@@ -44,7 +44,7 @@ O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer,
 * O software deve ser responsivo, para se adaptar a diferentes tipos de tela
 * O software deve ter um sistema de autenticação seguro
 
-## Projeto com visão de produto Produto
+## Projeto com visão de produto
 
 ### Análise de custo do projeto
 

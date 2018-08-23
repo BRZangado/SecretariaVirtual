@@ -32,7 +32,11 @@ O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer,
 * Eu como aluno, quero poder acompanhar o status da minha solicitação.
 * Eu como secretária acadêmica, quero atender a demanda de solicitações acadêmicas em ambiente virtual
 * Eu como secretária acadêmica, quero visualizar o formulário de requisição preenchidos pelos alunos
-* Eu como secretária acadêmica, preciso encaminhas os formulários para o restante dos funcionários da Faculdade
+* Eu como secretária acadêmica, preciso encaminhar os formulários para o restante dos funcionários da Faculdade
+* Eu como secretária acadêmica, preciso ter a opção de encerrar um requerimento
+* Eu como secretária acadêmica, preciso guardar os requerimentos encerrados em pastas de acordo com o ano do requerimento
+* Eu como secretária acadêmica, quero poder baixar um arquivo docx sobre as requisições encerradas
+* Eu como secretária acadêmica, quero poder reabrir um requerimento caso seja necessário
 * Eu como Coordenador, preciso preencher um parecer sobre a solicitação acadêmica do aluno
 * Eu como Gerente Financeiro, preciso preencher um parecer sobre a solicitação acadêmica do aluno
 * Eu como Bibliotecário, preciso preencher um parecer sobre a solicitação acadêmica do aluno
@@ -41,6 +45,9 @@ O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer,
 ### Requisitos não Funcionais
 
 * O software deve ser responsivo, para se adaptar a diferentes tipos de tela
+* O software deverá ser de fácil entendimento e utilização, visando usuários com pouca habilidade em informática.
+* O software deverá coletar métricas de uso para que possam ser usados em insights para melhor a experiência do usário
+* 
 * O software deve ter um sistema de autenticação seguro
 
 ## Projeto com visão de produto

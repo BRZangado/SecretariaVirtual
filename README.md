@@ -13,8 +13,7 @@ O sistema será utilizado nos browsers Google Chrome, Safari, Internet Explorer,
 
 ## Papéis
 
-* Product Owner Externo: Faculdade Anasps
-* Product Owner Interno: Secretaria Acadêmica
+* Product Owner: Secretaria Acadêmica Faculdade Anasps
 * Scrum Master e Engenheiro de Software: Bruno Rodrigues Santos
 * Principais Usuários:
 	

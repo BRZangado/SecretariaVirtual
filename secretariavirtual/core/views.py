@@ -51,6 +51,9 @@ class LoginView(FormView):
             elif user.usuario.is_caa:
                 return HttpResponseRedirect(reverse('accounts:homecaa'))
         else:
-            return HttpResponseRedirect(reverse('accounts:invalid'))
+            return HttpResponseRedirect(reverse('core:indexerror'))
 
 
+class LoginViewAuthError(LoginView):
+
+    template_name = 'login_error.html'

@@ -5,7 +5,7 @@ Sistema baseado em Django de tranferência de arquivos e solicitações entre v�
 
 ## Escopo
 
-* O objetivo desse projeto é suprir a demanda de requisições e solicitações acadêmicas de forma totalmente virtual,
+* Suprir a demanda de requisições e solicitações acadêmicas de forma totalmente virtual,
 poupando o aluno de se locomover presencialmente e aumentando a mobilidade e rapidez das tranferências de arquivos entre os funcionários da Faculdade.
 
 ## Ambiente do Usuário

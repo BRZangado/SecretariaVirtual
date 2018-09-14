@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'secretariavirtual.wsgi.application'
 DATABASES = { 
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'mongo1',
+        'NAME': 'mongosecretaria',
         'HOST': 'db'
     }   
 }

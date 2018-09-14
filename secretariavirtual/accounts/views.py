@@ -56,7 +56,7 @@ class HomeAlunoView(FormView, LoginRequiredMixin):
 		else:
 			prefix = str(Solicitation.objects.count())
 
-		solicitation_order = str(prefix)+"/"+str(now.year)
+		solicitation_order = str(prefix)+"-"+str(now.year)
 
 		'''
 		Get attachments if uploaded

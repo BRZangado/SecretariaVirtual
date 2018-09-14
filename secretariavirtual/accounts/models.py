@@ -117,7 +117,7 @@ class Solicitation(models.Model):
 	solicitation = models.CharField(
 		('Solicitação'),
 		help_text=("Solicitação"),
-		max_length=30,
+		max_length=100,
 	)
 
 	reason = models.CharField(

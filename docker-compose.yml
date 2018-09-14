@@ -1,11 +1,11 @@
 version: '3.5'
 
 services:
-  igdbdb:
+  db:
     image: mongo
     ports:
       - "27017:27017"
-  igdbweb:
+  web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
@@ -13,4 +13,4 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - igdbdb
+      - db

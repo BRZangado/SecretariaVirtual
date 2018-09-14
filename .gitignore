@@ -1,3 +1,4 @@
 db.sqlite3
 secretkey.txt
 **/migrations/*
+secretariavirtual/commom-static/media/anexos/*

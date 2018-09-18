@@ -78,12 +78,14 @@ WSGI_APPLICATION = 'secretariavirtual.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = { 
+DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'mongosecretaria',
-        'HOST': 'db'
-    }   
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
 }
 
 
